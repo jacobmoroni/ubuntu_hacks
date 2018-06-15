@@ -19,6 +19,7 @@ my personal hacks and things that I want to remember about ubuntu
 * `htop` --show processor and memory usage
 * `scp username@ip:path/to/file/ /path/to/destination` --copy a file from SSH to local
 * `scp /path/to/file username@ip:/path/to/destination` --copy a file from local to SSH
+* `-j<number>` and `-l<number>` -- used for cmake and catkin make to control how many threads you want. On an i7 you can usually do twice the ammount of threads as you have cores the `-l` is for load sharing, to prevent overloading your cores. Use these to speed up builds or slow them down to prevent crashing 
 
 ### General Ubuntu stuff
 ***
