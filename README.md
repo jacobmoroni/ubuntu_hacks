@@ -50,3 +50,6 @@ my personal hacks and things that I want to remember about ubuntu
 ***
 * resetusb.sh --resets usb drivers on computer. I use this when my computer stops detecting stuff like my keyboard
 * terminator config. --sets up shortcuts for terminator to work how I like it.
+* .alias -- aliases for navigating faster
+* .vimrc -- personal vim settings
+* .tmux.conf and .tmux.conf.local --my tmux settings. I got them from [this site](https://github.com/gpakosz/.tmux "https://github.com/gpakosz/.tmux")
