@@ -52,4 +52,4 @@ my personal hacks and things that I want to remember about ubuntu
 * terminator config. --sets up shortcuts for terminator to work how I like it.
 * .alias -- aliases for navigating faster
 * .vimrc -- personal vim settings
-* .tmux.conf and .tmux.conf.local --my tmux settings. I got them from [this site](https://github.com/gpakosz/.tmux "https://github.com/gpakosz/.tmux")
+* .tmux.conf and .tmux.conf.local --my tmux settings. I got them from [this site](https://github.com/gpakosz/.tmux "https://github.com/gpakosz/.tmux"). Another good resource for shortcuts and hotkeys for tmux can be found [here](https://gist.github.com/MohamedAlaa/2961058,"https://gist.github.com/MohamedAlaa/2961058").
