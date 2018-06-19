@@ -3,8 +3,8 @@ my personal hacks and things that I want to remember about ubuntu
 
 ### Command Line Stuff
 ***
-* `sudo nmtui` -- set up wifi in terminal
 * `ifconfig` -- see connection and networking information
+* `sudo nmtui` -- set up wifi in terminal
 * `hostname -I` --see own ip address
 * `ls -ltrh /dev/video*` --list all video devices plugged in
 * Look for lost files (if you accidentally delete them):
@@ -19,6 +19,22 @@ my personal hacks and things that I want to remember about ubuntu
 * `htop` --show processor and memory usage
 * `scp username@ip:path/to/file/ /path/to/destination` --copy a file from SSH to local
 * `scp /path/to/file username@ip:/path/to/destination` --copy a file from local to SSH
+* `grep -rnw '/path/to/somewhere/' -e 'pattern'` --search for 'pattern' in files inside '/path/to/somewhere'.
+  *  `-r` or `-R` is recursive,
+  *  `-n` is line number, and
+  *  `-w` stands for match the whole word.
+  *  `-l` (lower-case L) can be added to just give the file name of matching files.
+    Along with these, `--exclude`, `--include`, `--exclude-dir` flags could be used for efficient searching:
+
+  * This will only search through those files which have .c or .h extensions:
+    `grep --include=\*.{c,h} -rnw '/path/to/somewhere/' -e "pattern"`
+  * This will exclude searching all the files ending with .o extension:
+    `grep --exclude=*.o -rnw '/path/to/somewhere/' -e "pattern"`
+  * For directories it's possible to exclude a particular directory(ies) through `--exclude-dir` parameter. For example, this will exclude the dirs dir1/, dir2/ and all of them matching `*.dst/`:
+
+    `grep --exclude-dir={dir1,dir2,*.dst} -rnw '/path/to/somewhere/' -e "pattern"`
+
+  more details can be found [here](https://stackoverflow.com/questions/16956810/how-do-i-find-all-files-containing-specific-text-on-linux "https://stackoverflow.com/questions/16956810/how-do-i-find-all-files-containing-specific-text-on-linux")
 
 ### General Ubuntu stuff
 ***
@@ -33,6 +49,9 @@ my personal hacks and things that I want to remember about ubuntu
 
   remove green background with `chmod o-rw <directory name>`
 
+* move program to other monitor use compizconfig-settings-manager or ccsm with 'put' plugin and assign "put to next output" see [this link](https://askubuntu.com/questions/22207/quickly-place-a-window-to-another-screen-using-only-the-keyboard "https://askubuntu.com/questions/22207/quickly-place-a-window-to-another-screen-using-only-the-keyboard") for more details.
+I have assigned it to `ctrl-super-m` on my computer.
+
 
 ### ROS Stuff
 ***
@@ -41,6 +60,10 @@ my personal hacks and things that I want to remember about ubuntu
 * Get info from mocap system: `rosrun vrpn_client_ros vrpn_client_node _server:=192.168.0.103 _refresh_tracker_frequency:=10`
 * `export ROS_MASTER_URI=http://<ipaddress>:11311`
 `export ROS_IP=http:$(hostname -I)` -- point to roscore on another machine to visualize on yours. You can replace <ipaddress> with either the tartget IP address of where you want to point to, or just the user name, if you have it saved in /etc/hosts with the IP address.
+* To make Gazebo end quicker:
+`sudo vi /opt/ros/kinetic/lib/python2.7/dist-packages/roslaunch/nodeprocess.py` and change the following variables
+```_TIMEOUT_SIGINT  = 0.5 #seconds
+_TIMEOUT_SIGTERM = 0.5 #seconds```
 
 ### Python Stuff
 ***
