@@ -25,7 +25,6 @@ my personal hacks and things that I want to remember about ubuntu (CTRL-SHIFT-M 
   *  `-w` stands for match the whole word.
   *  `-l` (lower-case L) can be added to just give the file name of matching files.
     Along with these, `--exclude`, `--include`, `--exclude-dir` flags could be used for efficient searching:
-
   * This will only search through those files which have .c or .h extensions:
     `grep --include=\*.{c,h} -rnw '/path/to/somewhere/' -e "pattern"`
   * This will exclude searching all the files ending with .o extension:
@@ -35,6 +34,9 @@ my personal hacks and things that I want to remember about ubuntu (CTRL-SHIFT-M 
     `grep --exclude-dir={dir1,dir2,*.dst} -rnw '/path/to/somewhere/' -e "pattern"`
 
   more details can be found [here](https://stackoverflow.com/questions/16956810/how-do-i-find-all-files-containing-specific-text-on-linux "https://stackoverflow.com/questions/16956810/how-do-i-find-all-files-containing-specific-text-on-linux")
+
+* `-j<number>` and `-l<number>` -- used for cmake and catkin make to control how many threads you want. On an i7 you can usually do twice the ammount of threads as you have cores the `-l` is for load sharing, to prevent overloading your cores. Use these to speed up builds or slow them down to prevent crashing 
+
 
 ### General Ubuntu stuff
 ***
