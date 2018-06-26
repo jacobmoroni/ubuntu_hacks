@@ -35,7 +35,7 @@ my personal hacks and things that I want to remember about ubuntu (CTRL-SHIFT-M 
 
   more details can be found [here](https://stackoverflow.com/questions/16956810/how-do-i-find-all-files-containing-specific-text-on-linux "https://stackoverflow.com/questions/16956810/how-do-i-find-all-files-containing-specific-text-on-linux")
 
-* `-j<number>` and `-l<number>` -- used for cmake and catkin make to control how many threads you want. On an i7 you can usually do twice the ammount of threads as you have cores the `-l` is for load sharing, to prevent overloading your cores. Use these to speed up builds or slow them down to prevent crashing 
+* `-j<number>` and `-l<number>` -- used for cmake and catkin make to control how many threads you want. On an i7 you can usually do twice the ammount of threads as you have cores the `-l` is for load sharing, to prevent overloading your cores. Use these to speed up builds or slow them down to prevent crashing
 
 
 ### General Ubuntu stuff
@@ -63,8 +63,7 @@ I have assigned it to `ctrl-super-m` on my computer.
 * `export ROS_MASTER_URI=http://<ipaddress>:11311`
 `export ROS_IP=http:$(hostname -I)` -- point to roscore on another machine to visualize on yours. You can replace <ipaddress> with either the tartget IP address of where you want to point to, or just the user name, if you have it saved in /etc/hosts with the IP address.
 * To make Gazebo end quicker:
-`sudo vi /opt/ros/kinetic/lib/python2.7/dist-packages/roslaunch/nodeprocess.py` and change the following variables
-```_TIMEOUT_SIGINT  = 0.5 #seconds
+`sudo vi /opt/ros/kinetic/lib/python2.7/dist-packages/roslaunch/nodeprocess.py` and change the following variables ```_TIMEOUT_SIGINT  = 0.5 #seconds
 _TIMEOUT_SIGTERM = 0.5 #seconds```
 
 ### Python Stuff
@@ -74,7 +73,7 @@ _TIMEOUT_SIGTERM = 0.5 #seconds```
 ### Files In Repo
 ***
 * resetusb.sh --resets usb drivers on computer. I use this when my computer stops detecting stuff like my keyboard
-* terminator config. --sets up shortcuts for terminator to work how I like it.
+* terminator config. --sets up shortcuts for terminator to work how I like it. copy config file into ~/.config/terminator
 * .alias -- aliases for navigating faster
-* .vimrc -- personal vim settings
+* .vimrc -- personal vim settings. need to firs install vundle with `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim` then run :PluginInstall to add plugins. You complete me must also be installed from source with `cd ~/.vim/bundle/YouCompleteMe` then `./install.py --clang-completer` more info from Devon's repo [here](https://github.com/DevonMorris/dotfiles,"https://github.com/DevonMorris/dotfiles")
 * .tmux.conf and .tmux.conf.local --my tmux settings. I got them from [this site](https://github.com/gpakosz/.tmux "https://github.com/gpakosz/.tmux"). Another good resource for shortcuts and hotkeys for tmux can be found [here](https://gist.github.com/MohamedAlaa/2961058,"https://gist.github.com/MohamedAlaa/2961058").
