@@ -54,6 +54,12 @@ my personal hacks and things that I want to remember about ubuntu (CTRL-SHIFT-M 
 * move program to other monitor use compizconfig-settings-manager or ccsm with 'put' plugin and assign "put to next output" see [this link](https://askubuntu.com/questions/22207/quickly-place-a-window-to-another-screen-using-only-the-keyboard "https://askubuntu.com/questions/22207/quickly-place-a-window-to-another-screen-using-only-the-keyboard") for more details.
 I have assigned it to `ctrl-super-m` on my computer.
 
+* Remapping thumb button for mx master:  first install xautomation (sudo apt-get install xautomation) :
+
+        Go to Settings > Keyboard > Shortcut and add a new personal shortcut.
+        Give it the name you want and the following command : xte 'usleep 100000' 'keydown Super_L' 'key S' 'keyup Super_L'
+        Click on your new shortcut to assign a new trigger and press the thumb button (or press Ctrl+Alt+Tab)
+
 
 ### ROS Stuff
 ***
@@ -65,6 +71,7 @@ I have assigned it to `ctrl-super-m` on my computer.
 * To make Gazebo end quicker:
 `sudo vi /opt/ros/kinetic/lib/python2.7/dist-packages/roslaunch/nodeprocess.py` and change the following variables ```_TIMEOUT_SIGINT  = 0.5 #seconds
 _TIMEOUT_SIGTERM = 0.5 #seconds```
+* throttle a topic `rosrun topic_tools throttle messages <in topic> <rate> <optional out topic>`
 
 ### Python Stuff
 ***
@@ -75,5 +82,5 @@ _TIMEOUT_SIGTERM = 0.5 #seconds```
 * resetusb.sh --resets usb drivers on computer. I use this when my computer stops detecting stuff like my keyboard
 * terminator config. --sets up shortcuts for terminator to work how I like it. copy config file into ~/.config/terminator
 * .alias -- aliases for navigating faster
-* .vimrc -- personal vim settings. need to firs install vundle with `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim` then run :PluginInstall to add plugins. You complete me must also be installed from source with `cd ~/.vim/bundle/YouCompleteMe` then `./install.py --clang-completer` more info from Devon's repo [here](https://github.com/DevonMorris/dotfiles,"https://github.com/DevonMorris/dotfiles")
+* .vimrc -- personal vim settings. need to firs install vundle with `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim` then run :PluginInstall to add plugins. You complete me must also be installed from source with `cd ~/.vim/bundle/YouCompleteMe` then `./install.py --clang-completer` more info from Devon's repo [here](https://github.com/DevonMorris/dotfiles,"https://github.com/DevonMorris/dotfiles") to get rid of `Disabling ros.vim: Vim with +python is required` error run `sudo apt install vim-gtk-py2` then `sudo update-alternatives --config vim` then choose the gtkpy2 option
 * .tmux.conf and .tmux.conf.local --my tmux settings. I got them from [this site](https://github.com/gpakosz/.tmux "https://github.com/gpakosz/.tmux"). Another good resource for shortcuts and hotkeys for tmux can be found [here](https://gist.github.com/MohamedAlaa/2961058,"https://gist.github.com/MohamedAlaa/2961058").
