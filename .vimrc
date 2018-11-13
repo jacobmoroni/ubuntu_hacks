@@ -5,6 +5,7 @@ filetype off                  " required
 set relativenumber
 set number
 
+set clipboard=unnamedplus
 set tags=tags
 
 " set the runtime path to include Vundle and initialize
@@ -41,6 +42,7 @@ filetype plugin indent on    " required
 filetype plugin on
 syntax on
 set tabstop=4
+set mouse=a
 set shiftwidth=4
 set expandtab
 set t_Co=256
@@ -126,3 +128,5 @@ let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+au BufRead,BufNewFile *.launch set filetype=xml
+au BufRead,BufNewFile *.rosrc set filetype=sh
