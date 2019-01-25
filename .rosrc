@@ -1,0 +1,12 @@
+export ROSLAUNCH_SSH_UNKNOWN=1
+export ROS_PARALLEL_JOBS='-l4 -j4'
+
+export ROSCONSOLE_FORMAT='[${severity}] [${time}] [${node}]: ${message}'
+
+# ROS_WORKSPACE
+source /opt/ros/kinetic/setup.bash
+source ~/magicc_lab/nist_mapping_ws/devel/setup.bash
+
+alias rosmaker="(cd `echo $ROS_PACKAGE_PATH | awk -Fsrc: '{print $1}'` && catkin_make -DCMAKE_BUILD_TYPE=RelWithDebInfo)"
+alias rosmaked="(cd `echo $ROS_PACKAGE_PATH | awk -Fsrc: '{print $1}'` && catkin_make -DCMAKE_BUILD_TYPE=Debug)"
+
