@@ -60,6 +60,7 @@ I have assigned it to `ctrl-super-m` on my computer.
         Give it the name you want and the following command : xte 'usleep 100000' 'keydown Super_L' 'key S' 'keyup Super_L'
         Click on your new shortcut to assign a new trigger and press the thumb button (or press Ctrl+Alt+Tab)
 
+* to see the last time a file was modified `stat -c '%y' filename`
 
 ### ROS Stuff
 ***
