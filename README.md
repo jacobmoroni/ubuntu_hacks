@@ -62,6 +62,13 @@ I have assigned it to `ctrl-super-m` on my computer.
 
 * to see the last time a file was modified `stat -c '%y' filename`
 
+* Disable caps lock and set to only turn it on by pressing both shift keys at once
+  1. Install DCONF
+    `sudo apt install dconf-tools`
+  2. Disable caps lock and reenable it as pressing both shift keys at once:
+    `setxkbmap -option "caps:none"`
+    `setxkbmap -option "shift:both_capslock"`
+
 ### ROS Stuff
 ***
 * View an image streaming in ROS: `rosrun image_view image_view image:=<topic>` or `rqt_image_view` then select the topic in the gui
