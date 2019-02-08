@@ -76,8 +76,22 @@ function qtsh()
   /opt/Qt/Tools/QtCreator/bin/qtcreator.sh 
 }
 
-
 function push()
 {
   git push origin master
+}
+
+function vbashrc()
+{
+  vim ~/.bashrc
+}
+
+function sbashrc()
+{
+  source ~/.bashrc
+}
+
+function sl()
+{
+  ls
 }
