@@ -8,7 +8,7 @@
   title_transmit_fg_color = "#d6d6d6"
   window_state = fullscreen
 [keybindings]
-  close_term = <Primary>d
+  close_term = <Primary>q
   cycle_next = <Shift>Page_Down
   cycle_prev = <Primary><Shift>Page_Up
   go_down = <Primary><Shift>Down
@@ -63,10 +63,8 @@
 [profiles]
   [[default]]
     background_darkness = 0.96
-    background_image = None
     background_type = transparent
     cursor_color = "#ff0000"
     font = Droid Sans Mono 10
     foreground_color = "#dadada"
-    scroll_on_output = False
     scrollback_lines = 4096
