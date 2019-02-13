@@ -15,6 +15,8 @@ my personal hacks and things that I want to remember about ubuntu (CTRL-SHIFT-M 
 * `ps -ax` --shows all running processes
 * `ps -ax | grep <desired program>` --search all processes for a desired program (use this if you need to kill something)
 * `kill <process number>` -- kill a process. Replace <process number with number returned from `ps -ax | grep <desired program>`
+* `pkill -f <desired progam>` will automatically kill all processes associated with that program (faster than ps -ax method if you know what you want to kill)
+* `xkill` lets you click on a program you want to kill
 * `df` -- show memory of all hard drives include `--block-size=g` to see in GB,`--block-size=m` to see in MB, and `--block-size=k` to see in KB
 * `htop` --show processor and memory usage
 * `scp username@ip:path/to/file/ /path/to/destination` --copy a file from SSH to local
@@ -42,9 +44,11 @@ my personal hacks and things that I want to remember about ubuntu (CTRL-SHIFT-M 
 ***
 * `ctrl-alt-F1` through `F6` -- open terminal interface outside of GUI (helpful for recovery stuff)
 * `ctrl-alt-F7` --enters GUI interface mode (normal mode)
+
 * numlock default to on on startup:
   1. install numlockx `sudo apt install numlockx`
   2. add `greeter-setup-script=/usr/bin/numlockx on` to bottom of file: usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf
+
 * when folders have green background in terminal. Usually caused by copying files from a flash drive or hard drive. See below for meaning:
 
   ![image](images/terminal_text_colors.png "terminal text color meanings")
@@ -66,9 +70,37 @@ I have assigned it to `ctrl-super-m` on my computer.
   1. Install DCONF
     `sudo apt install dconf-tools`
   2. Disable caps lock and reenable it as pressing both shift keys at once:
-    `setxkbmap -option "caps:none"`
-    `setxkbmap -option "shift:both_capslock"`
+    `setxkbmap -option "caps:none" && setxkbmap -option "shift:both_capslock"`
 
+* Change Login Screen in ubuntu 18.04
+  1. edit /usr/share/gnome-shell/theme/ubuntu.css file (with sudo)
+  `sudo vim /usr/share/gnome-shell/theme/ubuntu.css`
+  2. change
+    ```
+    #lockDialogGroup{
+      background: #2c001e url(resource:///org/gnome/shell/theme/noise-texture.png);
+      background-repeat: repeat;}
+    ```
+
+    to
+    ```
+    #lockDialogGroup
+    {
+      background: #2c001e url(file:///<fileLocation/filename.png>);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+    ```
+    but replace `<fileLocation/filename.png>` with the actual location and filename you want (Reboot required to take effect)
+### Package/Program Install instructions
+***
+* to install openscene graph from ppa
+```
+sudo add-apt-repository ppa:openmw/openmw
+sudo apt update
+sudo apt install openscenegraph-3.4 libopenscenegraph-3.4-dev
+```
 ### ROS Stuff
 ***
 * View an image streaming in ROS: `rosrun image_view image_view image:=<topic>` or `rqt_image_view` then select the topic in the gui
