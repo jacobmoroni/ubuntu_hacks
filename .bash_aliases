@@ -95,3 +95,8 @@ function sl()
 {
   ls
 }
+
+function find_word()
+{
+  grep -rnw '.' -e "$1"
+}
