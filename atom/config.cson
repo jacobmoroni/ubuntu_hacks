@@ -1,0 +1,40 @@
+"*":
+  core:
+    packagesWithKeymapsDisabled: []
+    telemetryConsent: "limited"
+  editor:
+    fontSize: 16
+    softWrap: true
+    softWrapAtPreferredLineLength: true
+    tabType: "soft"
+  "exception-reporting":
+    userId: "360f899e-6fcf-4e82-95bc-7f6eb5f68174"
+  "highlight-selected":
+    showResultsOnScrollBar: true
+  hyperclick: {}
+  latex:
+    buildOnSave: true
+    opener: "pdf-view"
+  "spell-check":
+    addKnownWords: true
+    grammars: [
+      "source.asciidoc"
+      "source.gfm"
+      "text.git-commit"
+      "text.plain"
+      "text.plain.null-grammar"
+      "text.tex.latex"
+    ]
+    knownWords: [
+      "traversability"
+      "waypoints"
+      "waypoint"
+      "discretize"
+      "discretizing"
+      "grey"
+      "UAV"
+    ]
+  welcome:
+    showOnStartup: false
+  "you-complete-me":
+    ycmdPath: ".vim/bundle/YouCompleteMe/third_party/ycmd/"
