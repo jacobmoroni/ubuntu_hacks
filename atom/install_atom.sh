@@ -10,7 +10,7 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 mkdir -p ~/.atom
-cp -r $DIR/../resources/atom ~/.atom
+cp -r $DIR/resources/ ~/.atom
 
 pushd .
 cd /tmp
@@ -18,4 +18,4 @@ wget -O atom.deb https://atom.io/download/deb
 sudo dpkg -i atom.deb
 popd > /dev/null
 
-apm install `cat $DIR/../resources/atom-packages.list`
+apm install `cat $DIR/atom-packages.list`
