@@ -109,9 +109,14 @@ sudo apt install openscenegraph-3.4 libopenscenegraph-3.4-dev
 * `export ROS_MASTER_URI=http://<ipaddress>:11311`
 `export ROS_IP=http:$(hostname -I)` -- point to roscore on another machine to visualize on yours. You can replace <ipaddress> with either the tartget IP address of where you want to point to, or just the user name, if you have it saved in /etc/hosts with the IP address.
 * To make Gazebo end quicker:
-`sudo vi /opt/ros/kinetic/lib/python2.7/dist-packages/roslaunch/nodeprocess.py` and change the following variables ```_TIMEOUT_SIGINT  = 0.5 #seconds
+`sudo vim /opt/ros/melodic/lib/python2.7/dist-packages/roslaunch/nodeprocess.py` and change the following variables ```_TIMEOUT_SIGINT  = 0.5 #seconds
 _TIMEOUT_SIGTERM = 0.5 #seconds```
 * throttle a topic `rosrun topic_tools throttle messages <in topic> <rate> <optional out topic>`
+
+* Error [REST.cc:205] during startup gazebo
+  You need to change `~/.ignition/fuel/config.yaml` as following.
+url: https://api.ignitionfuel.org
+to url: https://api.ignitionrobotics.org
 
 ### Python Stuff
 ***
