@@ -93,6 +93,22 @@ I have assigned it to `ctrl-super-m` on my computer.
     }
     ```
     but replace `<fileLocation/filename.png>` with the actual location and filename you want (Reboot required to take effect)
+
+
+
+  * z shell stuff
+
+    `sudo apt install curl vim git`
+
+    first copy .zshrc to home,
+    run the following line to install oh-my-zsh
+
+    `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
+
+    then run
+
+    `chsh -s /bin/zsh $USER`
+
 ### Package/Program Install instructions
 ***
 * to install openscene graph from ppa
