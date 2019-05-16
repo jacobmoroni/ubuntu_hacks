@@ -98,16 +98,20 @@ I have assigned it to `ctrl-super-m` on my computer.
 
   * z shell stuff
 
-    `sudo apt install curl vim git`
+    `sudo apt install curl vim git zsh`
 
     first copy .zshrc to home,
     run the following line to install oh-my-zsh
 
     `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
+    
+    copy the .zshrc file into home again to keep settings because the oh my zsh install overwrites some of them
 
     then run
 
     `chsh -s /bin/zsh $USER`
+
+    you will need to log out for this to take effect
 
 ### Package/Program Install instructions
 ***
@@ -142,6 +146,10 @@ to url: https://api.ignitionrobotics.org
 ***
 * resetusb.sh --resets usb drivers on computer. I use this when my computer stops detecting stuff like my keyboard
 * terminator config. --sets up shortcuts for terminator to work how I like it. copy config file into ~/.config/terminator
-* .alias -- aliases for navigating faster
+* .aliases -- aliases for navigating faster
 * .vimrc -- personal vim settings. need to firs install vundle with `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim` then run :PluginInstall to add plugins. You complete me must also be installed from source with `cd ~/.vim/bundle/YouCompleteMe` then `./install.py --clang-completer` more info from Devon's repo [here](https://github.com/DevonMorris/dotfiles,"https://github.com/DevonMorris/dotfiles") to get rid of `Disabling ros.vim: Vim with +python is required` error run `sudo apt install vim-gtk-py2` then `sudo update-alternatives --config vim` then choose the gtkpy2 option
 * .tmux.conf and .tmux.conf.local --my tmux settings. I got them from [this site](https://github.com/gpakosz/.tmux "https://github.com/gpakosz/.tmux"). Another good resource for shortcuts and hotkeys for tmux can be found [here](https://gist.github.com/MohamedAlaa/2961058,"https://gist.github.com/MohamedAlaa/2961058").
+
+* .zshrc shell script for zshell
+
+* /atom contains files and instructions on how to install atom the way I like it
