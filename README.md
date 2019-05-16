@@ -111,7 +111,9 @@ I have assigned it to `ctrl-super-m` on my computer.
 
     `chsh -s /bin/zsh $USER`
 
-    you will need to log out for this to take effect
+     you will need to log out for this to take effect
+
+     also don't forget to change the ros sourced stuff from devel/setup.bash to devel/setup.zsh
 
 ### Package/Program Install instructions
 ***
