@@ -92,7 +92,7 @@ I have assigned it to `ctrl-super-m` on my computer.
       background-position: center;
     }
     ```
-    but replace `<fileLocation/filename.png>` with the actual location and filename you want (Reboot required to take effect)
+    but replace `<fileLocation/filename.png>` with the actual location and filename you want (Reboot required to take effect). It seems like you might have to do this every time gnome updates. here is an example of the file url `url(file:///home/jacob/Pictures/background_green.jpg)`
 
 
 
