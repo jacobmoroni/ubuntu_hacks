@@ -20,6 +20,8 @@ popd > /dev/null
 
 apm install `cat $DIR/atom-packages.list`
 
-sudo apt install texlive
+cp $DIR/resources/* ~/.atom/
+
+sudo apt install texlive-base
 sudo apt install texlive-science
 sudo apt install latexmk
