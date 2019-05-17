@@ -104,7 +104,7 @@ I have assigned it to `ctrl-super-m` on my computer.
     run the following line to install oh-my-zsh
 
     `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
-    
+
     copy the .zshrc file into home again to keep settings because the oh my zsh install overwrites some of them
 
     then run
@@ -147,7 +147,10 @@ to url: https://api.ignitionrobotics.org
 ### Files In Repo
 ***
 * resetusb.sh --resets usb drivers on computer. I use this when my computer stops detecting stuff like my keyboard
-* terminator config. --sets up shortcuts for terminator to work how I like it. copy config file into ~/.config/terminator
+* terminator config. --sets up shortcuts for terminator to work how I like it. first install terminator `sudo apt intall terminator` then copy the terminator folder into the .config folder in home `cp -r terminator ~/.config/` then set the default terminal back to gnome-terminal.wrapper with `sudo update-alternatives --config x-terminal-emulator` so `ctrl-shift-t` still opens a normal terminal. then create a new keyboard shortcut for terminator `Settings->Devices->Keyboard->New Custom Shortcut` with the following information
+
+  ![image](images/terminator_shortcut.png "terminator shortcut")
+
 * .aliases -- aliases for navigating faster
 * .vimrc -- personal vim settings. need to firs install vundle with `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim` then run :PluginInstall to add plugins. You complete me must also be installed from source with `cd ~/.vim/bundle/YouCompleteMe` then `./install.py --clang-completer` more info from Devon's repo [here](https://github.com/DevonMorris/dotfiles,"https://github.com/DevonMorris/dotfiles") to get rid of `Disabling ros.vim: Vim with +python is required` error run `sudo apt install vim-gtk-py2` then `sudo update-alternatives --config vim` then choose the gtkpy2 option
 * .tmux.conf and .tmux.conf.local --my tmux settings. I got them from [this site](https://github.com/gpakosz/.tmux "https://github.com/gpakosz/.tmux"). Another good resource for shortcuts and hotkeys for tmux can be found [here](https://gist.github.com/MohamedAlaa/2961058,"https://gist.github.com/MohamedAlaa/2961058").
