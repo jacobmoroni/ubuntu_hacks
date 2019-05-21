@@ -39,15 +39,39 @@ my personal hacks and things that I want to remember about ubuntu (CTRL-SHIFT-M 
 
 * `-j<number>` and `-l<number>` -- used for cmake and catkin make to control how many threads you want. On an i7 you can usually do twice the ammount of threads as you have cores the `-l` is for load sharing, to prevent overloading your cores. Use these to speed up builds or slow them down to prevent crashing
 
+If you copy files out to NTFS or exfat memory it doesnt keep read write permissions so when you copy it back, you need to fix the permisions. this lets you fix those with a single command
+* set files in folder to 644
+  `find </desired_location> -type f -print0 | xargs -0 chmod 0644`
+
+* set folders in folder to 755
+  `find </desired_location> -type d -print0 | xargs -0 chmod 0755`
+
 
 ### General Ubuntu stuff
 ***
 * `ctrl-alt-F1` through `F6` -- open terminal interface outside of GUI (helpful for recovery stuff)
 * `ctrl-alt-F7` --enters GUI interface mode (normal mode)
 
-* numlock default to on on startup:
+* numlock default to on on startup 16.04:
   1. install numlockx `sudo apt install numlockx`
   2. add `greeter-setup-script=/usr/bin/numlockx on` to bottom of file: usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf
+
+
+* numlock default on startup 18.04
+  `sudo -i`
+
+  Switch to user gdm in the terminal:
+  `su gdm -s /bin/bash`
+
+  Finally set ‘Numlock on’ via gdm user:
+  `gsettings set org.gnome.settings-daemon.peripherals.keyboard numlock-state 'on'`
+
+  Restart the computer and done
+
+
+* ubuntu 18.04 right click touchpad reenable
+  first `sudo apt install gnome-tweaks` if it isnt installed yet
+  then in Keyboard and mouse select Area for the mouse options
 
 * when folders have green background in terminal. Usually caused by copying files from a flash drive or hard drive. See below for meaning:
 
@@ -123,6 +147,48 @@ sudo add-apt-repository ppa:openmw/openmw
 sudo apt update
 sudo apt install openscenegraph-3.4 libopenscenegraph-3.4-dev
 ```
+
+* to install java jdk 12
+  [instructions](http://ubuntuhandbook.org/index.php/2019/03/install-oracle-java-12-ubuntu-18-04-16-04/ "http://ubuntuhandbook.org/index.php/2019/03/install-oracle-java-12-ubuntu-18-04-16-04/")
+
+  ```
+  sudo add-apt-repository ppa:linuxuprising/java
+  sudo apt update
+  sudo apt install oracle-java12-installer
+  sudo apt install oracle-java12-set-default
+  ```
+
+* Tizen Studio prereqs:
+  this doesnt work...
+  as of 5-21-19 tizen studio doesnt support openjdk 11 so you need to install openjdk 8.
+
+  [here](https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-on-ubuntu-18-04 "instructions for openjdk8 install") are instructions to install it.
+  or
+  ```
+  sudo apt install default-jre
+  sudo apt install default-jdk
+  sudo apt install openjdk-8-jdk
+  sudo apt install openjdk-8-jre
+  ```
+  then `sudo update-alternatives --config java` and set to java 8
+
+  then `sudo update-alternatives --config javac` and set to java 8
+
+  so as of writing this, openjdk doesnt let you open an emulator so you need oracle jdk 8 which 18.04 doesnt have a funcitoning ppm for. here is what I did that maybe works
+
+  download the tar.gz for jdk 8 [here](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html "jdk8") then copy it into /usr/lib/jvm (with sudo)
+
+  then unpack and install it
+  `tar zxvf jdk-8uversion-linux-x64.tar.gz` <-- change the '8uversion' to whatever the file name is. then you need to change the symlinks to java and javac to point to this rather than whatever else you have. so go to /usr/bin and run `sudo ln -s /usr/lib/jvm/jdk1.8.0_211/bin/java java` but replace the jdk1.8.0... with whatever the installation is. then do it with javac too
+  check if it worked with java -version and javac -version
+
+  then the rest of the install from the tizen site should work
+
+  `sudo apt install libwebkitgtk-1.0-0 rpm2cpio libsdl1.2debian
+bridge-utils openvpn`
+
+  Need to do that stuff before installing tizen studio.
+
 ### ROS Stuff
 ***
 * View an image streaming in ROS: `rosrun image_view image_view image:=<topic>` or `rqt_image_view` then select the topic in the gui
