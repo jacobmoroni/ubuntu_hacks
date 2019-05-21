@@ -375,6 +375,8 @@ sudo apt install python-dev python3-dev python-pip python3-pip python3-tk
 pip2 install --upgrade pip setuptools wheel --user
 pip3 install --upgrade pip setuptools wheel --user
 
+#RESART COMPUTER HERE
+
 ---
 pip2 install
 ipython
@@ -394,23 +396,9 @@ tesserocr
 jupyter --user
 
 ---
-pip3 install
-ipython
-numpy
-scipy
-pybind11
-pygame
-vtk
-matplotlib
-pyqt5
-pyside2
-mako
-pyopencl
-jinja2
-pytesseract
-tesserocr
-jupyter --user
+pip3 install ipython numpy scipy pybind11 pygame vtk matplotlib pyqt5 pyside2 mako jinja2 pytesseract tesserocr jupyter --user
 
+pip3 install pyopencl --user
 testresources ??
 
 dbus-python
