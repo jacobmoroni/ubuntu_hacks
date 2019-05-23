@@ -223,8 +223,14 @@ cd .local/lib/python3.6/site-packages
 sudo rm -rf pip*  
 pip3 install --upgrade pip setuptools wheel --user
 ```
+[here](https://askubuntu.com/questions/969463/python3-pip3-install-broken-on-ubuntu "askubuntu thread") is a link to the thread that I found
+
+I also deleted ~/.cache/pip because I was getting a warning about it and I think it fixed the problem
+
 do this for python2 if you managed to mess that one up too.
 then reboot computer here
+
+the you are good to start installing packages using pip --user
 
 
 
