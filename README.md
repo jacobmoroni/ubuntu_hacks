@@ -46,7 +46,6 @@ If you copy files out to NTFS or exfat memory it doesnt keep read write permissi
 * set folders in folder to 755
   `find </desired_location> -type d -print0 | xargs -0 chmod 0755`
 
-
 ### General Ubuntu stuff
 ***
 * `ctrl-alt-F1` through `F6` -- open terminal interface outside of GUI (helpful for recovery stuff)
@@ -138,6 +137,18 @@ I have assigned it to `ctrl-super-m` on my computer.
      you will need to log out for this to take effect
 
      also don't forget to change the ros sourced stuff from devel/setup.bash to devel/setup.zsh
+
+* change thumbnail size in nautilus.
+
+  First make sure experimental view is disabled
+  `gsettings set org.gnome.nautilus.preferences use-experimental-views false`
+
+  Then change thumbnail size. This changes it to 400%
+  `gsettings set org.gnome.nautilus.icon-view thumbnail-size 400`
+
+  then kill nautilus. and restart it
+  `killal nautilus`
+
 
 ### Package/Program Install instructions
 ***
