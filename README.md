@@ -221,6 +221,30 @@ to url: https://api.ignitionrobotics.org
 ***
 * Breakpoints and debugging in python: `from IPython.core.debugger import set_trace` or `from ipdb import set_trace` or `from pdb import set trace` (Depending on whether you are using iPython or just normal python) then use `set_trace()` in the line you want to insert the break point. Then when in the debugging mode, C-n moves to the next line and it works just like iPython live editor.
 
+* if you messed up pip stuff, fix it with this
+```
+sudo apt purge python3-pip  
+rm -rf '/usr/lib/python3/dist-packages/pip'  
+sudo apt install python3-pip   
+cd
+cd .local/lib/python3/site-packages
+sudo rm -rf pip*  
+cd
+cd .local/lib/python3.6/site-packages
+sudo rm -rf pip*  
+pip3 install --upgrade pip setuptools wheel --user
+```
+[here](https://askubuntu.com/questions/969463/python3-pip3-install-broken-on-ubuntu "askubuntu thread") is a link to the thread that I found
+
+I also deleted ~/.cache/pip because I was getting a warning about it and I think it fixed the problem
+
+do this for python2 if you managed to mess that one up too.
+then reboot computer here
+
+the you are good to start installing packages using pip --user
+
+
+
 ### Files In Repo
 ***
 * resetusb.sh --resets usb drivers on computer. I use this when my computer stops detecting stuff like my keyboard
