@@ -171,7 +171,7 @@ sudo apt install openscenegraph-3.4 libopenscenegraph-3.4-dev
 
 * Tizen Studio prereqs:
   this doesnt work...
-  as of 5-21-19 tizen studio doesnt support openjdk 11 so you need to install openjdk 8.
+  as of 5-21-19 tizen studio doesnt support openjdk 11 so you need to install openjdk 8. acutally openjdk at all isnt really supported if you want to use the emulator. so skip the following and install oracle java 8
 
   [here](https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-on-ubuntu-18-04 "instructions for openjdk8 install") are instructions to install it.
   or
@@ -185,7 +185,7 @@ sudo apt install openscenegraph-3.4 libopenscenegraph-3.4-dev
 
   then `sudo update-alternatives --config javac` and set to java 8
 
-  so as of writing this, openjdk doesnt let you open an emulator so you need oracle jdk 8 which 18.04 doesnt have a funcitoning ppm for. here is what I did that maybe works
+  HERE --> so as of writing this, openjdk doesnt let you open an emulator so you need oracle jdk 8 which 18.04 doesnt have a funcitoning ppm for. here is what I did that maybe works
 
   download the tar.gz for jdk 8 [here](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html "jdk8") then copy it into /usr/lib/jvm (with sudo)
 
@@ -195,6 +195,7 @@ sudo apt install openscenegraph-3.4 libopenscenegraph-3.4-dev
 
   then the rest of the install from the tizen site should work
 
+  here are a couple other packages that it will prompt you to install if you havent installed them yet.
   `sudo apt install libwebkitgtk-1.0-0 rpm2cpio libsdl1.2debian
 bridge-utils openvpn`
 
