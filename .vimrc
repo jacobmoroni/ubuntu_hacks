@@ -29,7 +29,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'SirVer/ultisnips'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'honza/vim-snippets'
-"Plugin 'taketwo/vim-ros'
+Plugin 'taketwo/vim-ros'
 Plugin 'Raimondi/delimitMate'
 
 " All of your Plugins must be added before the following line
