@@ -1,5 +1,30 @@
 #!/usr/bin/env bash
 
+function ros_master()
+{
+  # this is for the wifi dongle
+  #export ROS_MASTER_URI=http://$(/sbin/ip -o -4 addr list wlxc46e1f100439 | awk '{print $4}' | cut -d/ -f1):11311
+  #this is when plugged into router
+  export ROS_MASTER_URI=http://$(/sbin/ip -o -4 addr list enp0s31f6 | awk '{print $4}' | cut -d/ -f1):11311
+  #export ROS_MASTER_URI=http://$(hostname -I):11311
+  export ROS_IP=$(hostname -I)
+
+  env | grep ROS_MASTER_URI
+  env | grep ROS_IP
+}
+
+function ssh_sam_wired()
+{
+  ssh sam@192.168.0.117
+}
+
+
+function ssh_sam()
+{
+  ssh sam@192.168.1.169
+}
+
+
 function ros_leo() 
 {
     export ROS_MASTER_URI=http://192.168.0.2:11311
@@ -58,14 +83,14 @@ function ros_local()
 
 function ssh_leo()
 {
-    ssh leo@leo
-    hex
+    ssh leo@192.168.1.26
 }
 
 function ssh_kbcar()
 {
     ssh nvidia@kbcar2.local
 }
+
 function qt()
 {
   /opt/Qt/Tools/QtCreator/bin/qtcreator 
@@ -89,6 +114,11 @@ function vbashrc()
 function sbashrc()
 {
   source ~/.bashrc
+}
+
+function szshrc()
+{
+  source ~/.zshrc
 }
 
 function sl()

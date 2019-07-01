@@ -1,6 +1,7 @@
 # ubuntu_hacks
 my personal hacks and things that I want to remember about ubuntu (CTRL-SHIFT-M to preview in atom)
 
+***
 ### Command Line Stuff
 ***
 * `ifconfig` -- see connection and networking information
@@ -46,6 +47,7 @@ If you copy files out to NTFS or exfat memory it doesnt keep read write permissi
 * set folders in folder to 755
   `find </desired_location> -type d -print0 | xargs -0 chmod 0755`
 
+***
 ### General Ubuntu stuff
 ***
 * `ctrl-alt-F1` through `F6` -- open terminal interface outside of GUI (helpful for recovery stuff)
@@ -78,7 +80,7 @@ If you copy files out to NTFS or exfat memory it doesnt keep read write permissi
 
   remove green background with `chmod o-rw <directory name>`
 
-* move program to other monitor use compizconfig-settings-manager or ccsm with 'put' plugin and assign "put to next output" see [this link](https://askubuntu.com/questions/22207/quickly-place-a-window-to-another-screen-using-only-the-keyboard "https://askubuntu.com/questions/22207/quickly-place-a-window-to-another-screen-using-only-the-keyboard") for more details.
+* move program to other monitor (16.04) use compizconfig-settings-manager or ccsm with 'put' plugin and assign "put to next output" see [this link](https://askubuntu.com/questions/22207/quickly-place-a-window-to-another-screen-using-only-the-keyboard "https://askubuntu.com/questions/22207/quickly-place-a-window-to-another-screen-using-only-the-keyboard") for more details.
 I have assigned it to `ctrl-super-m` on my computer.
 
 * Remapping thumb button for mx master:  first install xautomation (sudo apt-get install xautomation) :
@@ -117,8 +119,6 @@ I have assigned it to `ctrl-super-m` on my computer.
     ```
     but replace `<fileLocation/filename.png>` with the actual location and filename you want (Reboot required to take effect). It seems like you might have to do this every time gnome updates. here is an example of the file url `url(file:///home/jacob/Pictures/background_green.jpg)`
 
-
-
   * z shell stuff
 
     `sudo apt install curl vim git zsh`
@@ -147,9 +147,17 @@ I have assigned it to `ctrl-super-m` on my computer.
   `gsettings set org.gnome.nautilus.icon-view thumbnail-size 400`
 
   then kill nautilus. and restart it
-  `killal nautilus`
+  `killall nautilus`
 
+* Push repo to github from gitlab repo (works vice-versa as well)
 
+  create an empty repo on GitHub
+
+  `git remote add github https://yourLogin@github.com/yourLogin/yourRepoName.git`
+
+  `git push --mirror github`
+
+***
 ### Package/Program Install instructions
 ***
 * to install openscene graph from ppa
@@ -194,13 +202,22 @@ sudo apt install openscenegraph-3.4 libopenscenegraph-3.4-dev
   check if it worked with java -version and javac -version
 
   then the rest of the install from the tizen site should work
-
   here are a couple other packages that it will prompt you to install if you havent installed them yet.
   `sudo apt install libwebkitgtk-1.0-0 rpm2cpio libsdl1.2debian
 bridge-utils openvpn`
 
   Need to do that stuff before installing tizen studio.
 
+* EIGEN --Be careful with this. I think `sudo apt install libeigen3-dev` works for just about all cases
+```
+   git clone https://github.com/eigenteam/eigen-git-mirror.git
+   cd eigen-git-mirror
+   git checkout tags/3.3.5
+   mkdir build && cd build
+   cmake ..
+   sudo make install
+```
+***
 ### ROS Stuff
 ***
 * View an image streaming in ROS: `rosrun image_view image_view image:=<topic>` or `rqt_image_view` then select the topic in the gui
@@ -218,6 +235,7 @@ _TIMEOUT_SIGTERM = 0.5 #seconds```
 url: https://api.ignitionfuel.org
 to url: https://api.ignitionrobotics.org
 
+***
 ### Python Stuff
 ***
 * Breakpoints and debugging in python: `from IPython.core.debugger import set_trace` or `from ipdb import set_trace` or `from pdb import set trace` (Depending on whether you are using iPython or just normal python) then use `set_trace()` in the line you want to insert the break point. Then when in the debugging mode, C-n moves to the next line and it works just like iPython live editor.
@@ -245,7 +263,7 @@ then reboot computer here
 the you are good to start installing packages using pip --user
 
 
-
+***
 ### Files In Repo
 ***
 * resetusb.sh --resets usb drivers on computer. I use this when my computer stops detecting stuff like my keyboard
