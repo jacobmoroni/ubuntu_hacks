@@ -13,11 +13,6 @@ function ros_master()
   env | grep ROS_IP
 }
 
-function ssh_sam_wired()
-{
-  ssh sam@192.168.0.117
-}
-
 
 function ssh_sam()
 {
@@ -25,51 +20,13 @@ function ssh_sam()
 }
 
 
-function ros_leo() 
+function ros_up() 
 {
-    export ROS_MASTER_URI=http://192.168.0.2:11311
+    export ROS_MASTER_URI=http://10.10.13.14:11311
     export ROS_IP=$(hostname -I)
-    export ROS_NAMESPACE=leo/rtabmap
 
     env | grep ROS_MASTER_URI
     env | grep ROS_IP
-    env | grep ROS_NAMESPACE
-}
-function ros_kbcar() 
-{
-    export ROS_MASTER_URI=http://192.168.0.102:11311
-    export ROS_IP=$(hostname -I)
-    export ROS_NAMESPACE=leo/rtabmap
-
-    env | grep ROS_MASTER_URI
-    env | grep ROS_IP
-    env | grep ROS_NAMESPACE
-}
-
-function rtab_leo() 
-{
-    export ROS_MASTER_URI=http://192.168.0.2:11311
-    export ROS_IP=$(hostname -I)
-    export ROS_NAMESPACE=leo/rtabmap
-
-    env | grep ROS_MASTER_URI
-    env | grep ROS_IP
-    env | grep ROS_NAMESPACE
-
-    rosrun rtabmap_ros rtabmapviz
-}
-
-function rtab_nvidia() 
-{
-    export ROS_MASTER_URI=http://kbcar2.local:11311
-    export ROS_IP=$(hostname -I)
-    export ROS_NAMESPACE=rtabmap
-
-    env | grep ROS_MASTER_URI
-    env | grep ROS_IP
-    env | grep ROS_NAMESPACE
-
-    rosrun rtabmap_ros rtabmapviz
 }
 
 function ros_local() 
@@ -81,14 +38,37 @@ function ros_local()
     env | grep ROS_IP
 }
 
-function ssh_leo()
+function apm_sim()
 {
-    ssh leo@192.168.1.26
+  cd ~/ardupilot-fortem/ArduCopter
+  ./start_apm_sim.sh
 }
 
-function ssh_kbcar()
+function dgc()
 {
-    ssh nvidia@kbcar2.local
+  cd ~/workspaces/ground-station/target
+  ./DGC-4.0.0.war
+}
+
+function viz_dgc()
+{
+  google-chrome http://localhost:8083/gc    
+}
+
+function run_dh_sim()
+{
+  terminator -l dh_sim
+}
+
+function qgc()
+{
+  cd ~/software/
+  ./QGroundControl.AppImage
+}
+
+function anansi_start()
+{
+  rosrun anansi_start anansi_start.sh
 }
 
 function qt()
@@ -106,14 +86,9 @@ function push()
   git push origin master
 }
 
-function vbashrc()
+function vzshrc()
 {
-  vim ~/.bashrc
-}
-
-function sbashrc()
-{
-  source ~/.bashrc
+  vim ~/.zshrc
 }
 
 function szshrc()
