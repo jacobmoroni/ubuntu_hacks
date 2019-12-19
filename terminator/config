@@ -32,22 +32,98 @@
     [[[child0]]]
       order = 0
       parent = ""
-      position = 0:24
-      size = 1679, 298
+      position = 1920:0
+      size = 2560, 1440
       type = Window
     [[[child1]]]
       order = 0
       parent = child0
-      position = 839
+      position = 1277
+      ratio = 0.4990234375
       type = HPaned
-    [[[terminal2]]]
+    [[[child2]]]
       order = 0
       parent = child1
-      profile = default
-      type = Terminal
-    [[[terminal3]]]
+      position = 719
+      ratio = 0.499652777778
+      type = VPaned
+    [[[child5]]]
       order = 1
       parent = child1
+      position = 719
+      ratio = 0.499652777778
+      type = VPaned
+    [[[terminal3]]]
+      order = 0
+      parent = child2
+      profile = default
+      type = Terminal
+    [[[terminal4]]]
+      order = 1
+      parent = child2
+      profile = default
+      type = Terminal
+    [[[terminal6]]]
+      order = 0
+      parent = child5
+      profile = default
+      type = Terminal
+    [[[terminal7]]]
+      order = 1
+      parent = child5
+      profile = default
+      type = Terminal
+  [[dh_sim]]
+    [[[child0]]]
+      order = 0
+      parent = ""
+      position = 1920:0
+      size = 2560, 1440
+      type = Window
+    [[[child1]]]
+      order = 0
+      parent = child0
+      position = 1277
+      ratio = 0.4990234375
+      type = HPaned
+    [[[child2]]]
+      order = 0
+      parent = child1
+      position = 719
+      ratio = 0.7
+      type = VPaned
+    [[[child5]]]
+      order = 1
+      parent = child1
+      position = 719
+      ratio = 0.7
+      type = VPaned
+    [[[terminal3]]]
+      command = ""
+      directory = /home/jacobolson/ros_logs
+      order = 0
+      parent = child2
+      profile = default
+      type = Terminal
+    [[[terminal4]]]
+      command = env INIT_CMD="apm_sim" zsh
+      directory = ""
+      order = 1
+      parent = child2
+      profile = default
+      type = Terminal
+    [[[terminal6]]]
+      command = env INIT_CMD="dgc" zsh
+      directory = ""
+      order = 0
+      parent = child5
+      profile = default
+      type = Terminal
+    [[[terminal7]]]
+      command = env INIT_CMD="anansi_start" zsh
+      directory = /home/jacobolson/workspaces/anansi_ros
+      order = 1
+      parent = child5
       profile = default
       type = Terminal
   [[original]]
@@ -63,8 +139,11 @@
 [profiles]
   [[default]]
     background_darkness = 0.96
+    background_image = None
     background_type = transparent
     cursor_color = "#ff0000"
     font = Droid Sans Mono 10
     foreground_color = "#dadada"
+    scroll_on_output = False
+    scrollback_infinite = True
     scrollback_lines = 4096

@@ -271,6 +271,7 @@ the you are good to start installing packages using pip --user
 
   ![image](images/terminator_shortcut.png "terminator shortcut")
 
+* callterm.sh --alternatively, copy this file into /usr/bin and make sure it is still executable. then set the <kbd>F1</kbd> key as the shortcut to callterm.sh. This will open an instance of terminator if there is not one already open. Or if there is one already open, it will show it (<kbd>F1</kbd> is already the hide/show key for terminator in the config file)
 * .aliases -- aliases for navigating faster
 * .vimrc -- personal vim settings. need to firs install vundle with `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim` then run :PluginInstall to add plugins. You complete me must also be installed from source with `cd ~/.vim/bundle/YouCompleteMe` then `./install.py --clang-completer` more info from Devon's repo [here](https://github.com/DevonMorris/dotfiles,"https://github.com/DevonMorris/dotfiles") to get rid of `Disabling ros.vim: Vim with +python is required` error run `sudo apt install vim-gtk-py2` then `sudo update-alternatives --config vim` then choose the gtkpy2 option
 * .tmux.conf and .tmux.conf.local --my tmux settings. I got them from [this site](https://github.com/gpakosz/.tmux "https://github.com/gpakosz/.tmux"). Another good resource for shortcuts and hotkeys for tmux can be found [here](https://gist.github.com/MohamedAlaa/2961058,"https://gist.github.com/MohamedAlaa/2961058").
