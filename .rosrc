@@ -13,8 +13,8 @@ alias rosmaked="(cd `echo $ROS_PACKAGE_PATH | awk -Fsrc: '{print $1}'` && catkin
 #source ~/workspaces/nist_mapping_ws/devel/setup.bash
 #source ~/byu_classes/cpp_gui/final-project-jacobmoroni/devel/setup.bash --extend
 
-source /opt/ros/melodic/setup.zsh
-source ~/workspaces/nist_mapping_ws/devel/setup.zsh --extend
+source /opt/ros/kinetic/setup.zsh
+#source ~/workspaces/nist_mapping_ws/devel/setup.zsh --extend
 
 export ROS_MASTER_URI=http://$(hostname -I):11311
 export ROS_IP=$(hostname -I)
