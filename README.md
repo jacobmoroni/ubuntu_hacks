@@ -15,7 +15,7 @@ my personal hacks and things that I want to remember about ubuntu (CTRL-SHIFT-M 
 * ssh <username>@<IPaddress> --SSH into another computer
 * `ps -ax` --shows all running processes
 * `ps -ax | grep <desired program>` --search all processes for a desired program (use this if you need to kill something)
-* `kill <process number>` -- kill a process. Replace <process number with number returned from `ps -ax | grep <desired program>`
+* `kill <process number>` -- kill a process. Replace <process number with number returned from `ps -ax | grep <S program>`
 * `pkill -f <desired progam>` will automatically kill all processes associated with that program (faster than ps -ax method if you know what you want to kill)
 * `xkill` lets you click on a program you want to kill
 * `df` -- show memory of all hard drives include `--block-size=g` to see in GB,`--block-size=m` to see in MB, and `--block-size=k` to see in KB
@@ -119,7 +119,7 @@ I have assigned it to `ctrl-super-m` on my computer.
     ```
     but replace `<fileLocation/filename.png>` with the actual location and filename you want (Reboot required to take effect). It seems like you might have to do this every time gnome updates. here is an example of the file url `url(file:///home/jacob/Pictures/background_green.jpg)`
 
-  * z shell stuff
+* z shell stuff
 
     `sudo apt install curl vim git zsh`
 
@@ -267,11 +267,19 @@ the you are good to start installing packages using pip --user
 ### Files In Repo
 ***
 * resetusb.sh --resets usb drivers on computer. I use this when my computer stops detecting stuff like my keyboard
-* terminator config. --sets up shortcuts for terminator to work how I like it. first install terminator `sudo apt intall terminator` then copy the terminator folder into the .config folder in home `cp -r terminator ~/.config/` then set the default terminal back to gnome-terminal.wrapper with `sudo update-alternatives --config x-terminal-emulator` so `ctrl-shift-t` still opens a normal terminal. then create a new keyboard shortcut for terminator `Settings->Devices->Keyboard->New Custom Shortcut` with the following information
+
+The next few files are to set up terminator to run like guake
+* terminator config. --sets up shortcuts for terminator to work how I like it. first install terminator `sudo apt intall terminator` then copy the terminator folder into the .config folder in home `cp -r terminator ~/.config/` then set the default terminal back to gnome-terminal.wrapper with `sudo update-alternatives --config x-terminal-emulator` so <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>T</kbd> still opens a normal terminal. [If the `terminator-daemon` and `terminator.desktop` files are used then this next step is unnecessary because there will always be an instance of terminator running] then create a new keyboard shortcut for terminator `Settings->Devices->Keyboard->New Custom Shortcut` with the following information
 
   ![image](images/terminator_shortcut.png "terminator shortcut")
 
-* callterm.sh --alternatively, copy this file into /usr/bin and make sure it is still executable. then set the <kbd>F1</kbd> key as the shortcut to callterm.sh. This will open an instance of terminator if there is not one already open. Or if there is one already open, it will show it (<kbd>F1</kbd> is already the hide/show key for terminator in the config file)
+* terminator-daemon -- this file will auto re-launch terminator if it is ever closed so that it behaves like guake. copy it into `/usr/local/bin` and make sure it is executable
+
+* terminator.desktop -- this needs to be placed in the `~/.config/autostart` folder so that it will run the `terminator-daemon` script on start to keep terminator always running. Now <kbd>F1</kbd> will always bring up terminator.
+
+* [this doesnt always work so I dont use it anymore] callterm.sh --alternatively, copy this file into /usr/bin and make sure it is still executable. then set the <kbd>F1</kbd> key as the shortcut to callterm.sh. This will open an instance of terminator if there is not one already open. Or if there is one already open, it will show it (<kbd>F1</kbd> is already the hide/show key for terminator in the config file)
+
+Some dot files
 * .aliases -- aliases for navigating faster
 * .vimrc -- personal vim settings. need to firs install vundle with `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim` then run :PluginInstall to add plugins. You complete me must also be installed from source with `cd ~/.vim/bundle/YouCompleteMe` then `./install.py --clang-completer` more info from Devon's repo [here](https://github.com/DevonMorris/dotfiles,"https://github.com/DevonMorris/dotfiles") to get rid of `Disabling ros.vim: Vim with +python is required` error run `sudo apt install vim-gtk-py2` then `sudo update-alternatives --config vim` then choose the gtkpy2 option
 * .tmux.conf and .tmux.conf.local --my tmux settings. I got them from [this site](https://github.com/gpakosz/.tmux "https://github.com/gpakosz/.tmux"). Another good resource for shortcuts and hotkeys for tmux can be found [here](https://gist.github.com/MohamedAlaa/2961058,"https://gist.github.com/MohamedAlaa/2961058").
