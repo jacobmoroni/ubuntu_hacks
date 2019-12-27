@@ -1,0 +1,22 @@
+#!/bin/zsh
+
+# This file should be copied into /usr/local/bin and be executable
+# Get current screen resolution
+XAXIS=$(xrandr --current | grep '*' | head -n 1 | uniq | awk '{print $1}' | cut -d 'x' -f1)
+YAXIS=$(xrandr --current | grep '*' | head -n 1 | uniq | awk '{print $1}' | cut -d 'x' -f2)
+
+while :
+do
+  PROCESS=$(ps -ef | grep -v grep | grep python | grep terminator | wc -l)
+  if [[ ${PROCESS} -eq 0 ]]; then
+    # Start Terminator and set width to full screen and height to two thirds of the screen
+    terminator --hidden
+    RETVAL=$?
+    if [[ ${RETVAL} -ne 0 ]]; then
+      break
+    fi
+  fi
+done
+
+echo -e "\n\e[0;31mIt appears you don't have Terminator installed. Install it first and then run this script.\e[0m"
+exit ${RETVAL}
