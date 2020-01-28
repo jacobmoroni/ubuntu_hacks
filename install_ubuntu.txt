@@ -56,7 +56,7 @@ added topicons openweather
 
 sudo apt install gir1.2-gtop-2.0 gir1.2-nm-1.0 gir1.2-clutter-1.0 
 sudo apt install gnome-system-monitor
-then you can add gnomestatspro
+then you can add gnomestatspro and system-monitor
 
 #======================================
 Some file installation from this repo https://github.com/jacobmoroni/ubuntu_hacks
@@ -65,8 +65,13 @@ sudo apt install zsh terminator guake
 install vim with setupvim.sh
 set up ohmyzsh with zsh by following instructions in readme
 set up terminator with instructions on readme 
+copy guake.desktop into autostart with  cp /usr/share/applications/guake.desktop ~/.config/autostart/
 
-
+#=================================================================
+clone necessary repos
+they can be found here
+https://fortemtech.atlassian.net/wiki/spaces/FT1/pages/737738784/DroneHunter+Repositories
+Dont forget to follow the readmes in the repos to set up correctly
 
 
 

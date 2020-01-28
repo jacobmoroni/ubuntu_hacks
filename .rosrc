@@ -1,5 +1,5 @@
 export ROSLAUNCH_SSH_UNKNOWN=1
-export ROS_PARALLEL_JOBS='-l4 -j4'
+export ROS_PARALLEL_JOBS='-l8 -j8'
 
 export ROSCONSOLE_FORMAT='[${severity}] [${time}] [${node}]: ${message}'
 
@@ -7,15 +7,8 @@ alias rosmaker="(cd `echo $ROS_PACKAGE_PATH | awk -Fsrc: '{print $1}'` && catkin
 alias rosmaked="(cd `echo $ROS_PACKAGE_PATH | awk -Fsrc: '{print $1}'` && catkin_make -DCMAKE_BUILD_TYPE=Debug)"
 
 #ROS WORKSPACE sourcing
-#source /opt/ros/melodic/setup.bash
-#source ~/magicc_lab/magicc_ws/devel/setup.bash
-#source ~/magicc_lab/relative_nav_ws/devel/setup.bash
-#source ~/workspaces/nist_mapping_ws/devel/setup.bash
-#source ~/byu_classes/cpp_gui/final-project-jacobmoroni/devel/setup.bash --extend
-
-source /opt/ros/kinetic/setup.zsh
+source /opt/ros/melodic/setup.zsh
 source ~/workspaces/anansi_ros/devel/setup.zsh --extend
-source ~/workspaces/anansi_sim/devel/setup.zsh --extend
 
 export ROS_MASTER_URI=http://$(hostname -I):11311
 export ROS_IP=$(hostname -I)
