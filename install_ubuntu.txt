@@ -66,7 +66,14 @@ install vim with setupvim.sh
 set up ohmyzsh with zsh by following instructions in readme
 set up terminator with instructions on readme 
 copy guake.desktop into autostart with  cp /usr/share/applications/guake.desktop ~/.config/autostart/
+guake has an issue in ubunty 18.04 apt repo that causes it to crash when trying to exit. this is the fix
+It's a Python indenting issue.
+https://github.com/Guake/guake/commit/f8699b4be6c058fd58a33a1d783cd404e9076b0e
 
+In current 18.04 package (guake 3.0.5-1), it's this file (line 1420):
+/usr/lib/python3/dist-packages/guake/guake_app.py
+
+it wont be fixed in the apt repos
 #=================================================================
 #clone necessary repos
 they can be found here
