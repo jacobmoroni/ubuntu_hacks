@@ -47,7 +47,7 @@ function apm_sim()
 function dgc()
 {
   cd ~/workspaces/ground-station/target
-  ./DGC-4.0.0.war
+  ./DGC-*.war
 }
 
 function viz_dgc()
@@ -68,6 +68,7 @@ function qgc()
 
 function anansi_start()
 {
+  cd ~/workspaces/anansi_ros
   rosrun anansi_start anansi_start.sh
 }
 
