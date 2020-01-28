@@ -59,7 +59,7 @@ sudo apt install gnome-system-monitor
 then you can add gnomestatspro and system-monitor
 
 #======================================
-Some file installation from this repo https://github.com/jacobmoroni/ubuntu_hacks
+#Some file installation from this repo https://github.com/jacobmoroni/ubuntu_hacks
 
 sudo apt install zsh terminator guake
 install vim with setupvim.sh
@@ -68,10 +68,29 @@ set up terminator with instructions on readme
 copy guake.desktop into autostart with  cp /usr/share/applications/guake.desktop ~/.config/autostart/
 
 #=================================================================
-clone necessary repos
+#clone necessary repos
 they can be found here
 https://fortemtech.atlassian.net/wiki/spaces/FT1/pages/737738784/DroneHunter+Repositories
 Dont forget to follow the readmes in the repos to set up correctly
 
+#======================================================================
+#Installing slack
+this adds slacke to the apt repos and adds it to start on boot
+wget https://downloads.slack-edge.com/linux_releases/slack-desktop-4.0.2-amd64.deb
+sudo apt install ./slack-desktop-*.deb
+cp /usr/share/applications/slack.desktop ~/.config/autostart           
 
+#======================================================================
+#installing jetbrains programs
+this guy set up a ppa to get the latest so they just install and update with apt
+https://github.com/JonasGroeger/jetbrains-ppa
+To use, call this to add the repos
 
+curl -s https://s3.eu-central-1.amazonaws.com/jetbrains-ppa/0xA6E8698A.pub.asc | sudo apt-key add -
+echo "deb http://jetbrains-ppa.s3-website.eu-central-1.amazonaws.com bionic main" | sudo tee /etc/apt/sources.list.d/jetbrains-ppa.list > /dev/null
+sudo apt-get update
+
+then install them
+
+sudo apt install clion intellij-idea-ultimate pycharm-community
+then for intellij and pycharm when you set them up add the link to run from command line
