@@ -1,40 +1,58 @@
-The way I set up my ubuntu 18.04 machine
+# remove unwanted stuff (apps, programs, games)
+sudo apt purge gnome-mines gnome-sudoku gnome-mahjongg \
+cheese aisleriot gnome-calendar thunderbird
+# gnome-maps  gnome-photos gnome-weather
+# #  gnome-books
+
+
 # ======================================
-# Turn off secure boot in BIOS the first thing you do. 
-I currently have hybrid graphics disabled too, but I think with nvidia-prime you can leave this on
-and actually switch between the nvidia gpu and the integrated intel gpu(much better battery life)
 # ======================================
-Get everything up to date before you mess with anything or panic
+
 # update system
 sudo apt update
 sudo apt upgrade
-sudo reboot now
-# =====================================
-Set up the Nvidia drivers and cuda if you have it
-I think this can be done by searching software & updates and then going to 'additional drivers' and selecting one. !!!! I DONT THINK THIS WILL WORK IF SECURE BOOT IS NOT DISABLED !!!
 
-follow cuda install instructions from nvidia website 
+sudo apt install vim git curl
 
-you can verify that the NVIDIA drivers worked by looking at settings->details and the graphics should now list your nvidia chip rather than the integrated GPU
+# ======================================
 
-also in command line run nvidia-smi will show your gpu consumption (similar to htop but for your gpu)
-nvidia-settings will open a gui to do some nvidia troubleshooting. could be useful
-#=======================================
-Set up ssh key
-ssh-keygen -t rsa -b 4096 -C "email@example.com"
-this will save your ssh key that you copy to github and gitlab to ~/.ssh/id_rsa.pub
-then copy the key over to github and git lab to do ssh repos
-#=====================================
-Install ROS this is nice to do first because it installs a bunch of other dependencies
-I used the update_dependencies.sh script in https://gitlab.com/fortem/anansi_dev_tools to do this and other dependencies that we use for development here
+# get rid of games                          ****************
+# get rid of Amazon                         ****************
+# get rid of Thunderbird                    ****************
 
-#======================================
-after ros and dependencies that come with it are installed, I move onto install other programs that I like and use. Most of this used my ubuntu_hacks repo https://github.com/jacobmoroni/ubuntu_hacks
+# ======================================
 
-sudo apt install vim git curl ssh terminator guake
-install vim with setupvim.sh
-set up ohmyzsh with zsh by following instructions in readme
-set up terminator with instructions on readme 
+# copy /etc/NetworkManager/system-connections
+
+# this will keep all 'remembered' networks available
+
+# BUT, fix the MAC addresses
+---
+
+# Stop Network Manager
+sudo /etc/init.d/network-manager stop
+
+# copy the files from your old system (adapt as needed)
+sudo rsync -va -c /media/$YOUR_OLD_SYSTEM/etc/NetworkManager/system-connections/ /etc/NetworkManager/system-connections/
+
+# Get your new MAC address, and verify it is right.
+# For example, this should work if you have only one wireless interface
+export MAC=$(iw dev | grep addr | awk '{print $2}')
+echo $MAC
+
+# Replace the MAC address in all the system-connections files
+sudo perl -i.bak -pe 's/^(mac-address=)(.*)/$1$ENV{MAC}/' /etc/NetworkManager/system-connections/*
+
+# Restart NetworkManager, and wait for nm-applet to also start and connect
+sudo /etc/init.d/network-manager start
+
+# Delete the backup files with the old MAC addresses
+sudo rm /etc/NetworkManager/system-connections/*.bak
+
+
+
+# ======================================
+# ======================================
 
 
 oh-my-zsh -- . >
