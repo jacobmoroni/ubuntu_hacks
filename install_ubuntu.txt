@@ -54,6 +54,10 @@ sudo apt install gnome-tweaks chrome-gnome-shell gnome-shell-extensions
 add gnome extension to chrome https://extensions.gnome.org/
 added topicons openweather 
 
+sudo apt install gir1.2-gtop-2.0 gir1.2-nm-1.0 gir1.2-clutter-1.0 
+sudo apt install gnome-system-monitor
+then you can add gnomestatspro
+
 #======================================
 Some file installation from this repo https://github.com/jacobmoroni/ubuntu_hacks
 
@@ -61,5 +65,8 @@ sudo apt install zsh terminator guake
 install vim with setupvim.sh
 set up ohmyzsh with zsh by following instructions in readme
 set up terminator with instructions on readme 
+
+
+
 
 
