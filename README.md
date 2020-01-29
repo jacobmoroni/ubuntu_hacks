@@ -170,7 +170,7 @@ sudo apt install openscenegraph-3.4 libopenscenegraph-3.4-dev
 * to install java jdk 12
   [instructions](http://ubuntuhandbook.org/index.php/2019/03/install-oracle-java-12-ubuntu-18-04-16-04/ "http://ubuntuhandbook.org/index.php/2019/03/install-oracle-java-12-ubuntu-18-04-16-04/")
 
-  ```
+  ```shell
   sudo add-apt-repository ppa:linuxuprising/java
   sudo apt update
   sudo apt install oracle-java12-installer
@@ -287,3 +287,6 @@ Some dot files
 * .zshrc shell script for zshell
 
 * /atom contains files and instructions on how to install atom the way I like it
+
+* ipython_config.py -- copy this file into ~/.ipython/profile_default. This is for ipython with python 2.7 could be a little different with python3.5. This is to automatically import numpy and matplotlib everytime you open ipython. You can also add other ipython environment stuff here
+
