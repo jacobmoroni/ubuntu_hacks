@@ -14,15 +14,15 @@ function ros_master()
 }
 
 
-function ssh_sam()
+function ssh_up()
 {
-  ssh sam@192.168.1.169
+  ssh up@10.45.10.72
 }
 
 
 function ros_up() 
 {
-    export ROS_MASTER_URI=http://10.10.13.14:11311
+    export ROS_MASTER_URI=http://10.45.10.72:11311
     export ROS_IP=$(hostname -I)
 
     env | grep ROS_MASTER_URI
@@ -40,7 +40,7 @@ function ros_local()
 
 function apm_sim()
 {
-  cd ~/ardupilot-fortem/ArduCopter
+  cd ~/workspaces/ardupilot-fortem/ArduCopter
   ./start_apm_sim.sh
 }
 
@@ -58,6 +58,12 @@ function viz_dgc()
 function run_dh_sim()
 {
   terminator -l dh_sim
+}
+
+function local_ports()
+{
+  cd ~/workspaces/anansi_dev_tools/tools
+  ./virtual_ports.sh -l
 }
 
 function qgc()
@@ -82,11 +88,6 @@ function qtsh()
   /opt/Qt/Tools/QtCreator/bin/qtcreator.sh 
 }
 
-function push()
-{
-  git push origin master
-}
-
 function vzshrc()
 {
   vim ~/.zshrc
@@ -105,4 +106,14 @@ function sl()
 function find_word()
 {
   grep -rnw '.' -e "$1"
+}
+
+function gmail()
+{
+  /opt/google/chrome/google-chrome --profile-directory=Default --app-id=pjkljhegncpnkpknbcohdijeoejaedia &
+}
+
+function calendar()
+{
+  /opt/google/chrome/google-chrome --profile-directory=Default --app-id=kjbdgfilnfhdoflbpgamdcdgpehopbep &
 }
