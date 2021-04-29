@@ -1,11 +1,11 @@
 set nocompatible              " be improved, required
-set laststatus=2
-set encoding=utf-8
+set laststatus=2              " show which mode you are in and filename 
+set encoding=utf-8            " sets default encoding
 filetype off                  " required
-set relativenumber
-set number
+set relativenumber            " shows relative line numbers 
+set number                    " turns line numbers on
 
-set clipboard=unnamedplus
+set clipboard=unnamedplus     " link to system clipboard
 set tags=tags
 
 " set the runtime path to include Vundle and initialize
@@ -34,23 +34,23 @@ Plugin 'Raimondi/delimitMate'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
-set completeopt-=preview
-
-set lazyredraw
+set completeopt-=preview     " sets autocomplete style
+set lazyredraw               " load and paste quicker
 
 filetype plugin indent on    " required
-filetype plugin on
-syntax on
-set tabstop=4
-set mouse=a
-set shiftwidth=4
-set expandtab
-set t_Co=256
-colorscheme gruvbox
-set background=dark
+filetype plugin on           " lets plugins detect filetype
+syntax on                    " turns on syntax highlighting
+set tabstop=4                " sets default tab width to 4 spaces
+set shiftwidth=4             " sets shift > to 4 spaces
+set mouse=a                  " turns on mouse usage
+set expandtab                " converts tabs to spaces
+set t_Co=256                 " sets default color interpreter
+colorscheme gruvbox          " sets colorscheme (from vim-colorschemes plugin)
+set background=dark          " tells vim that the background is dark
 
-let mapleader = "\\"
-nmap <space> <leader>
+let mapleader = "\\"         " sets leader to be
+" maps spacebar to be the leader
+nmap <space> <leader>        
 vmap <space> <leader>
 set backspace=indent,eol,start
 
@@ -97,7 +97,7 @@ vnoremap J 10j
 vnoremap K 10k
 
 " Mappings for tree list netrw
-nnoremap <leader>ex :Vex <CR>
+nnoremap <leade>ex :Vex <CR>
 let g:netrw_banner = 0
 let g:netrw_winsize = 20
 
@@ -130,3 +130,43 @@ let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 au BufRead,BufNewFile *.launch set filetype=xml
 au BufRead,BufNewFile *.rosrc set filetype=sh
+
+" map Ctrl-s to save
+noremap <silent> <C-S>          :update<CR>
+vnoremap <silent> <C-S>         <C-C>:update<CR>
+inoremap <silent> <C-S>         <C-O>:update<CR>
+
+" map Ctrl-q to soft quit
+nmap <C-_> <leader>c<SPACE><CR>
+vmap <C-_> <leader>c<SPACE><CR>
+imap <C-_> <ESC><leader>c<SPACE><CR>
+
+" map Alt-q to quit without saving
+execute "set <M-q>=\eq"
+noremap <silent><M-q> :quit!<CR>
+vnoremap <silent><M-q> <C-C>:quit!<CR>
+inoremap <silent><M-q> <C-O>:quit!<CR>
+
+" map Alt-x to save and quit
+execute "set <M-x>=\ex"
+noremap <silent><M-x> :x<CR>
+vnoremap <silent><M-x> <C-C>:x<CR>
+inoremap <silent><M-x> <C-O>:x<CR>
+
+" detect filetype for comments
+filetype plugin on
+
+" ctrl+/ to toggle comments
+nmap <C-_> <leader>c<SPACE><CR>
+vmap <C-_> <leader>c<SPACE><CR>
+imap <C-_> <ESC><leader>c<SPACE><CR>
+
+" Move lines with ctrl-up and ctrl-down
+execute "set <M-j>=\ej"
+execute "set <M-k>=\ek"
+nmap <M-j> :m .+1<CR>==
+nmap <M-k> :m .-2<CR>==
+imap <M-j> <Esc>:m .+1<CR>==gi
+imap <M-k> <Esc>:m .-2<CR>==gi
+vmap <M-j> :m '>+1<CR>gv=gv
+vmap <M-k> :m '<-2<CR>gv=gv
