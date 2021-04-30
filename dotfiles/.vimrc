@@ -123,11 +123,18 @@ nnoremap <leader>lv :!mupdf %:r.pdf &<CR><CR>
 " Note: there is a fix for iTerm2 mentioned in their README
 let g:airline_powerline_fonts = 1
 
+" YouCompleteMeConfigStuff
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
+" This changes select previous in YCM to up so that shift-tab can still
+" unindent
+let g:ycm_key_list_previous_completion = ['<Up>'] 
+inoremap <expr><S-Tab> pumvisible() ? "<C-p>" : "<c-d>"
+
 au BufRead,BufNewFile *.launch set filetype=xml
 au BufRead,BufNewFile *.rosrc set filetype=sh
 
@@ -170,3 +177,7 @@ imap <M-j> <Esc>:m .+1<CR>==gi
 imap <M-k> <Esc>:m .-2<CR>==gi
 vmap <M-j> :m '>+1<CR>gv=gv
 vmap <M-k> :m '<-2<CR>gv=gv
+
+" Shift-Tab to untab
+execute "set <S-Tab>=\e[Z"
+imap <S-Tab> <C-D>
