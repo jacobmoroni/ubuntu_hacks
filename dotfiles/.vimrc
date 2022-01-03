@@ -2,8 +2,8 @@ set nocompatible              " be improved, required
 set laststatus=2              " show which mode you are in and filename 
 set encoding=utf-8            " sets default encoding
 filetype off                  " required
-set relativenumber            " shows relative line numbers 
-set number                    " turns line numbers on
+set relativenumber            " shows relative line numbers 'set norelativenumber' to disable
+set number                    " turns line numbers on 'set nonumber' to disable 
 
 set clipboard=unnamedplus     " link to system clipboard
 set tags=tags
@@ -42,7 +42,7 @@ filetype plugin on           " lets plugins detect filetype
 syntax on                    " turns on syntax highlighting
 set tabstop=4                " sets default tab width to 4 spaces
 set shiftwidth=4             " sets shift > to 4 spaces
-set mouse=a                  " turns on mouse usage
+set mouse=a                  " turns on mouse usage 'set mouse=' to disable
 set expandtab                " converts tabs to spaces
 set t_Co=256                 " sets default color interpreter
 colorscheme gruvbox          " sets colorscheme (from vim-colorschemes plugin)

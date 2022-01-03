@@ -13,6 +13,12 @@ function ros_master()
   env | grep ROS_IP
 }
 
+#function clion(){
+  #this is a super hacky way to get this to work. for some reason clion is only playing nice if
+  #launched from bash. so i switch to bash and the .bashrc file just launces clion because I never
+  #use bash for anything else
+  #bash
+#}
 
 function ssh_up()
 {
@@ -40,13 +46,13 @@ function ros_local()
 
 function apm_sim()
 {
-  cd ~/workspaces/ardupilot-fortem/ArduCopter
+  cd ~/workspaces/dronehunter-dev/ardupilot-fortem/ArduCopter
   ./start_apm_sim.sh
 }
 
 function dgc()
 {
-  cd ~/workspaces/ground-station/target
+  cd ~/workspaces/dronehunter-dev/ground-station/target
   ./DGC-*.war
 }
 
@@ -74,7 +80,7 @@ function qgc()
 
 function anansi_start()
 {
-  cd ~/workspaces/anansi_ros
+  cd ~/workspaces/dronehunter-dev/anansi_ros
   rosrun anansi_start anansi_start.sh
 }
 
@@ -117,3 +123,136 @@ function calendar()
 {
   /opt/google/chrome/google-chrome --profile-directory=Default --app-id=kjbdgfilnfhdoflbpgamdcdgpehopbep &
 }
+
+function vpn()
+{
+  echo "NULL"
+  netExtenderGui
+}
+
+function detar(){
+  tar -xvzf "$1"
+  rm "$1"
+  cd $(echo "$1"| cut -d'.' -f 1)
+}
+
+function retar(){
+  tar -cvzf "$1.tgz" "$1"
+}
+
+function fix_rosbag(){
+  echo "Reindexing bag: $1..."
+  rosbag reindex "$1"
+  echo "Fixing bag..."
+  rosbag fix "$1" $(echo "$1"| cut -d'.' -f 1)".bag"
+  echo "Removing currupt bag files..."
+  rm "$1"
+  rm $(echo "$1"| cut -d'.' -f 1)".bag.orig.active"
+}
+
+function print_this(){
+  echo $(echo "$1"| cut -d'.' -f 1)".bag"
+}
+
+function tracker(){
+  sudo bash /opt/tracker/tracker.sh
+}
+
+function profile(){
+  python3 -m cProfile -o $2 $1
+}
+
+function printProf(){
+  echo $2 $1
+}
+
+extract-all () 
+{ 
+  NO_FLIGHT_DIR="noFlight";
+  if [[ -d "${NO_FLIGHT_DIR}" ]]; then
+      echo "grabbing ${NO_FLIGHT_DIR} logs";
+      mv -v "${NO_FLIGHT_DIR}"/* .;
+      rm -rv "${NO_FLIGHT_DIR}";
+  fi;
+  echo "current dir: $(pwd)";
+  mkdir -p archive;
+  for x in *.tgz;
+  do
+      echo "  $x" && tar -xzf $x && mv $x archive;
+  done;
+  echo ",extract-all done!";
+  ls --color=auto
+}
+
+function dh_sim(){
+  tmux new-session \; split-window -v \; split-window -h \; send -t 0:1.1 "dgc" C-m \; send -t 0:1.2 "anansi_start" C-m \; send -t 0:1.3 "apm_sim" C-m \; attach 
+}
+
+function show_gitlab_token(){
+  echo "fXWYjr3KGwPuUczz6UcD"
+  echo "Expires 5-5-22"
+}
+
+function rkill(){
+  rosrun anansi_start kill_all.sh
+}
+
+alias pr='python3 ~/workspaces/dronehunter-dev/dronehunter-analysis-tools/plotRosbag.py'
+alias pts='python3 ~/workspaces/dronehunter-dev/dronehunter-analysis-tools/live_visualization_tools/plot_states.py'
+alias dhviz='python3 ~/workspaces/dronehunter-dev/dronehunter-analysis-tools/live_visualization_tools/dronehunter_visualization.py'
+alias netviz='python3 ~/workspaces/dronehunter-dev/dronehunter-analysis-tools/live_visualization_tools/net_dynamics_viz.py'
+alias logwiz='python3 ~/workspaces/dronehunter-dev/anansi_dev_tools/tools/log_wizard/log_wizard.py'
+function copyVersionedFile() {
+    file_to_copy=${1}
+    destination=${2}
+    version_line_number=${3}
+    file_version_line=$(sed -n ${version_line_number}p ${file_to_copy})
+    #first check if file exists
+    if test -f "${destination}"; then
+        echo "Moving along"
+    # file exists so check if it is the same version
+        if sudo grep -Fxq ${file_version_line} ${destination}; then
+          echo "checking next"
+          file_size1=$(ls -l ${file_to_copy} | awk '{print $5}')
+          file_size2=$(ls -l ${destination} | awk '{print $5}')
+            if [ "$file_size1" = "$file_size2" ]; then
+                echo "File ${file_to_copy} is unchanged, not copying"; 
+            else 
+                echo "Copying ${file_to_copy} to ${destination}. Different size"; 
+                cp ${file_to_copy} ${destination}
+            fi
+        else 
+            echo "Copying ${file_to_copy} to ${destination}. Different version"; 
+            cp ${file_to_copy} ${destination}
+        fi
+    else 
+        echo "Copying ${file_to_copy} to ${destination}. File doesnt exist"; 
+        cp ${file_to_copy} ${destination}
+    fi
+}
+
+function listDrds(){
+  parent_directory=${1}
+  drds=$(ls -t ${parent_directory})
+  # echo "this is the return ${drds}"
+
+  # readarray -t y <<<"$drds"
+  # IFS='\n' read -rd '' -a y array <<< "$drds"
+  # IFS=$'\n' read -rd ' ' y <<<"$drds"
+  # IFS=$'\n' y=($drds)
+  # y=(${drds//$'\n'/ })
+  myarray=($drds)
+  echo "moving on"
+  echo "num elements= ${#myarray[@]}"
+
+  for file in $y
+  do
+    echo "--> $file"
+  done
+}
+
+function ssh_() {
+  ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no ${1} ${2}
+}
+
+

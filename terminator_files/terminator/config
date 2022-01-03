@@ -1,15 +1,17 @@
 [global_config]
   always_on_top = True
-  enabled_plugins = CustomCommandsMenu, InactivityWatch, TestPlugin, ActivityWatch, TerminalShot, LaunchpadCodeURLHandler, APTURLHandler, Logger, MavenPluginURLHandler, LaunchpadBugURLHandler
-  hide_from_taskbar = True
   borderless = True
+  enabled_plugins = CustomCommandsMenu, InactivityWatch, TestPlugin, ActivityWatch, TerminalShot, LaunchpadCodeURLHandler, APTURLHandler, Logger, MavenPluginURLHandler, LaunchpadBugURLHandler
+  handle_size = 1
+  hide_from_taskbar = True
   sticky = True
   title_hide_sizetext = True
   title_receive_fg_color = "#e1e1e1"
   title_transmit_fg_color = "#d6d6d6"
   window_state = fullscreen
 [keybindings]
-  close_term = <Primary>q
+  close_term = <Primary>w
+  close_window = <Primary><Shift>w
   cycle_next = <Shift>Page_Down
   cycle_prev = <Primary><Shift>Page_Up
   go_down = <Primary><Shift>Down
@@ -19,6 +21,7 @@
   help = F12
   hide_window = F1
   next_tab = <Primary>Page_Down
+  page_down = None
   prev_tab = <Primary>Page_Up
   resize_down = <Primary><Shift>p
   resize_left = <Primary><Shift>i
@@ -26,6 +29,7 @@
   resize_up = <Primary><Shift>e
   split_horiz = <Primary><Shift>h
   split_vert = <Primary><Shift>j
+  switch_to_tab_1 = None
   zoom_in = <Primary>equal
 [layouts]
   [[default]]
@@ -139,11 +143,9 @@
 [profiles]
   [[default]]
     background_darkness = 0.96
-    background_image = None
     background_type = transparent
     cursor_color = "#ff0000"
     font = Droid Sans Mono 10
     foreground_color = "#dadada"
-    scroll_on_output = False
     scrollback_infinite = True
     scrollback_lines = 4096
