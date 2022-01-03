@@ -8,8 +8,12 @@ alias rosmaked="(cd `echo $ROS_PACKAGE_PATH | awk -Fsrc: '{print $1}'` && catkin
 
 #ROS WORKSPACE sourcing
 source /opt/ros/melodic/setup.zsh
-source ~/workspaces/anansi_ros/devel/setup.zsh --extend
+source ~/workspaces/dronehunter-dev/anansi_ros/devel/setup.zsh --extend
+#source ~/workspaces/red-v-blue/devel/setup.zsh --extend
+source ~/workspaces/dronehunter-dev/target-simulator/devel/setup.zsh --extend
+source ~/workspaces/dronehunter-dev/dronehunter-utilities/devel/setup.zsh --extend
+#source ~/workspaces/dronehunter-dev/visualizer/build/devel/setup.zsh --extend
 
-export ROS_MASTER_URI=http://$(hostname -I):11311
-export ROS_IP=$(hostname -I)
+#export ROS_MASTER_URI=http://$(hostname -I):11311
+#export ROS_IP=$(hostname -I)
 
