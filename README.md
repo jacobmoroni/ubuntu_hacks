@@ -4,6 +4,8 @@ I have some helpful tips that I have come accross and want to remember in [this 
 
 And I have my installation instructions from the last time I set up ubuntu 18.04 on my computer in [this one](https://github.com/jacobmoroni/ubuntu_hacks/wiki/Ubuntu-18.04-Install-Instructions)
 
+[Ubuntu 20.04 install instructions](https://github.com/jacobmoroni/ubuntu_hacks/wiki/Ubuntu-20.04-installation)
+
 ## Files In Repo
 
 These are the files in my repo along with some instructions on how to use them
