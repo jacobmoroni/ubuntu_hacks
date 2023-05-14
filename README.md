@@ -6,6 +6,8 @@ And I have my installation instructions from the last time I set up ubuntu 18.04
 
 [Ubuntu 20.04 install instructions](https://github.com/jacobmoroni/ubuntu_hacks/wiki/Ubuntu-20.04-installation)
 
+[Ubuntu 22.04 install instructions](https://github.com/jacobmoroni/ubuntu_hacks/wiki/Ubuntu-22.04-installation)
+
 ## Files In Repo
 
 These are the files in my repo along with some instructions on how to use them
