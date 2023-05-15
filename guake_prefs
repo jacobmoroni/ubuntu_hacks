@@ -2,6 +2,9 @@
 abbreviate-tab-names=false
 compat-delete='delete-sequence'
 display-n=-1
+display-tab-names=0
+gtk-use-system-default-theme=true
+hide-tabs-if-one-tab=true
 history-size=1000
 infinite-history=true
 max-tab-name-length=100
@@ -15,9 +18,9 @@ restore-tabs-startup=true
 save-tabs-when-changed=true
 scroll-keystroke=true
 use-default-font=true
-use-popup=true
+use-popup=false
 use-scrollbar=true
-use-trayicon=true
+use-trayicon=false
 window-halignment=0
 window-height=38
 window-losefocus=false
@@ -33,12 +36,12 @@ decrease-height='<Primary>KP_2'
 increase-height='<Primary>KP_8'
 
 [style]
-cursor-blink-mode=2
+cursor-blink-mode=0
 
 [style/background]
-transparency=89
+transparency=97
 
 [style/font]
 allow-bold=true
-palette='#000000000000:#cccc00000000:#4e4e9a9a0606:#c4c4a0a00000:#34346565a4a4:#757550507b7b:#060698209a9a:#d3d3d7d7cfcf:#555557575353:#efef29292929:#8a8ae2e23434:#fcfce9e94f4f:#72729f9fcfcf:#adad7f7fa8a8:#3434e2e2e2e2:#eeeeeeeeecec:#ffffffffffff:#000000000000'
-palette-name='Custom'
+palette='#3C3C3B3B3030:#979728280F0F:#474799994242:#7F7F71711010:#49497F7F7D7D:#7E7E4E4E2E2E:#38387F7F5858:#808079797474:#545454544444:#DFDF50502A2A:#6060E0E06F6F:#D6D698982727:#7878D8D8D8D8:#CDCD7C7C5353:#5858D5D59898:#FFFFF1F1E8E8:#808079797373:#212121211C1C'
+palette-name='Elemental'
