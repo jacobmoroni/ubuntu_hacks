@@ -46,13 +46,13 @@ function ros_local()
 
 function apm_sim()
 {
-  cd ~/workspaces/dronehunter-dev/ardupilot-fortem/ArduCopter
+  cd ~/workspaces/dronehunter-dev/src/production/ardupilot-fortem/ArduCopter
   ./start_apm_sim.sh
 }
 
 function dgc()
 {
-  cd ~/workspaces/dronehunter-dev/ground-station/target
+  cd ~/workspaces/dronehunter-dev/src/production/ground-station/target
   ./DGC-*.war
 }
 
@@ -82,6 +82,12 @@ function anansi_start()
 {
   cd ~/workspaces/dronehunter-dev/anansi_ros
   rosrun anansi_start anansi_start.sh
+}
+
+function run_full_sim()
+{
+  cd ~/workspaces/dronehunter-dev
+  bash run_full_sim.sh
 }
 
 function qt()
@@ -126,7 +132,11 @@ function calendar()
 
 function vpn()
 {
-  echo "NULL"
+  echo "s: 63.78.118.202:4433"
+  echo "u: jacob.olson"
+  echo "NULL" | xclip -selection c
+  echo "p: copied to clipboard. Delete the last character"
+  echo "d: Fortem"
   netExtenderGui
 }
 
@@ -141,13 +151,16 @@ function retar(){
 }
 
 function fix_rosbag(){
-  echo "Reindexing bag: $1..."
-  rosbag reindex "$1"
-  echo "Fixing bag..."
-  rosbag fix "$1" $(echo "$1"| cut -d'.' -f 1)".bag"
+  new_bag=$(echo "$1"| cut -d'.' -f 1)".bag"
+  echo "Moving $1 -> $new_bag"
+  mv $1 $new_bag 
+  echo "Reindexing bag: $new_bag..."
+  rosbag reindex "$new_bag"
+  #echo "Fixing bag..."
+  #rosbag fix "$1" $(echo "$1"| cut -d'.' -f 1)".bag"
   echo "Removing currupt bag files..."
-  rm "$1"
-  rm $(echo "$1"| cut -d'.' -f 1)".bag.orig.active"
+  #rm "$1"
+  rm $(echo "$1"| cut -d'.' -f 1)".orig.bag"
 }
 
 function print_this(){
@@ -188,20 +201,38 @@ function dh_sim(){
   tmux new-session \; split-window -v \; split-window -h \; send -t 0:1.1 "dgc" C-m \; send -t 0:1.2 "anansi_start" C-m \; send -t 0:1.3 "apm_sim" C-m \; attach 
 }
 
-function show_gitlab_token(){
-  echo "fXWYjr3KGwPuUczz6UcD"
-  echo "Expires 5-5-22"
+function dh_full_sim(){
+  tmux new-session \; split-window -v \; split-window -h \; new-window \; split-window -v \; split-window -h \; send -t 0:1.1 "dgc" C-m \; send -t 0:1.2 "anansi_start" C-m \; send -t 0:1.3 "apm_sim" C-m \; send -t 0:2.1 "rosrun sim_interfaces target_interface" C-m \; send -t 0:2.2 "bash ~/workspaces/dronehunter-dev/visualizer/scripts/run.sh" C-m \; send -t 0:2.3 "bash ~/workspaces/dronehunter-dev/radar-sim/scripts/run.sh air" C-m \; attach 
+  
+}
+
+function github_token_to_clipboard(){
+  echo "TODO-copy-token" | xclip -selection c
+  echo "Expires ??"
+}
+
+alias setclip="xclip -selection c"
+alias getclip="xclip -selection c -o"
+
+function gitlab_token_to_clipboard(){
+  echo "TODO-copy-token" | xclip -selection c
+  echo "Copied to clipboard. Token expires: 11-06-2024"
 }
 
 function rkill(){
   rosrun anansi_start kill_all.sh
 }
 
-alias pr='python3 ~/workspaces/dronehunter-dev/dronehunter-analysis-tools/plotRosbag.py'
-alias pts='python3 ~/workspaces/dronehunter-dev/dronehunter-analysis-tools/live_visualization_tools/plot_states.py'
-alias dhviz='python3 ~/workspaces/dronehunter-dev/dronehunter-analysis-tools/live_visualization_tools/dronehunter_visualization.py'
-alias netviz='python3 ~/workspaces/dronehunter-dev/dronehunter-analysis-tools/live_visualization_tools/net_dynamics_viz.py'
-alias logwiz='python3 ~/workspaces/dronehunter-dev/anansi_dev_tools/tools/log_wizard/log_wizard.py'
+alias pr='python3 ~/workspaces/dronehunter-dev/tools/analysis-tools/executables/plot_rosbag'
+alias prl='cd ~/ros_logs/latest && pr'
+alias pts='python3 ~/workspaces/dronehunter-dev/tools/analysis-tools/executables/dh_plot_states'
+alias dhviz='python3 ~/workspaces/dronehunter-dev/tools/analysis-tools/executables/dh_viz'
+alias netviz='python3 ~/workspaces/dronehunter-dev/tools/analysis-tools/executables/dh_net_viz'
+alias logwiz='python3 ~/workspaces/dronehunter-dev/tools/anansi_dev_tools/tools/log_wizard/log_wiz_gui.py'
+alias plot_apm='python3 ~/workspaces/dronehunter-dev/tools/analysis-tools/apm_analysis_scripts/plot_apm_log.py'
+alias plot_dgc='python3 ~/workspaces/dronehunter-dev/tools/analysis-tools/dgc_analysis_scripts/plot_dgc.py'
+alias plot_dgc_pre_v6='python3 ~/workspaces/dronehunter-dev/tools/analysis-tools/dgc_analysis_scripts/plot_dgc_pre_v6.py'
+alias studio="bash ~/Software/android-studio/bin/studio.sh"
 function copyVersionedFile() {
     file_to_copy=${1}
     destination=${2}
@@ -255,4 +286,42 @@ function ssh_() {
   ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no ${1} ${2}
 }
 
+function internal_audio() {
+  pactl set-default-sink alsa_output.pci-0000_00_1f.3.analog-stereo
+  pactl set-default-source alsa_input.pci-0000_00_1f.3.analog-stereo
+  echo "ran it" >> testing.log
+}
+
+function show_sizes() {
+  ls -t | while IFS= read -r dir; do du -sh "$dir"; done
+}
+
+function rezip() {
+  unzip -Z -1 $1 | xargs -I{} rm -rv {}
+}
+
+function log_scraper() {
+  python ~/workspaces/dronehunter-dev/tools/analysis-tools/dh_analysis_scripts/log_scraper/dh_log_scraper.py $1
+}
+
+function safe_delete_git_branches() {
+  bash ~/.scripts/safe_delete_git_branches.sh
+}
+
+function git_branch_hash() {
+  hash=$(git rev-parse HEAD)
+  branch=$(git branch -a --contains=$hash | grep "remotes" | grep -vwE "(HEAD)")
+  echo "$branch"
+  if [[ -z "${branch}" ]]; then
+    echo $(git branch -a --contains=$hash) 
+  fi
+}
+
+function copyright_check_main() {
+  rosrun tools check_copyrights.py --apply --files $(git diff --diff-filter=AMR --name-only origin/main...HEAD)
+}
+
+function copyright_check_dev() {
+  rosrun tools check_copyrights.py --apply --files $(git diff --diff-filter=AMR --name-only origin/dev...HEAD)
+}
 
