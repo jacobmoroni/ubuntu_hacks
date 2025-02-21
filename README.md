@@ -25,6 +25,8 @@ The next few files are to set up terminator to run like guake (located in the te
 * terminator-daemon -- this file will auto re-launch terminator if it is ever closed so that it behaves like guake. copy it into `/usr/local/bin` and make sure it is executable
 
 * terminator.desktop -- this needs to be placed in the `~/.config/autostart` folder so that it will run the `terminator-daemon` script on start to keep terminator always running. Now <kbd>F1</kbd> will always bring up terminator.
+### Guake
+to set guake prefs `guake --restore-preferences guake_prefs` (guake_prefs is a file in this repo)
 
 ### Dot Files
 * .aliases -- aliases for navigating faster
