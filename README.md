@@ -20,7 +20,7 @@ These are the files in my repo along with some instructions on how to use them
 ### Terminator Files and Instructions
 
 The next few files are to set up terminator to run like guake (located in the terminator_files folder)
-* terminator config --sets up shortcuts for terminator to work how I like it. first install terminator `sudo apt install terminator` then copy the terminator folder into the .config folder in home `cp -r terminator ~/.config/` then set the default terminal back to gnome-terminal.wrapper with `sudo update-alternatives --config x-terminal-emulator` so <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>T</kbd> still opens a normal terminal. 
+* terminator config --sets up shortcuts for terminator to work how I like it. first install terminator `sudo apt install terminator` then copy the terminator folder into the .config folder in home `cp -r terminator ~/.config/` then set the default terminal back to gnome-terminal.wrapper with `sudo update-alternatives --config x-terminal-emulator` so <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>T</kbd> still opens a normal terminal. 
 
 * terminator-daemon -- this file will auto re-launch terminator if it is ever closed so that it behaves like guake. copy it into `/usr/local/bin` and make sure it is executable
 
