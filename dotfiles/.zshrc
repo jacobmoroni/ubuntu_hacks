@@ -10,31 +10,6 @@
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="af-magic"
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS=true
-
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
 
@@ -47,11 +22,6 @@ ZSH_THEME="af-magic"
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # You can set one of the optional three formats:
@@ -59,9 +29,6 @@ ZSH_THEME="af-magic"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -99,18 +66,10 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 source ~/.aliases
-source ~/.rosrc
-
-# Java Sourcing
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-export PATH=$PATH:$JAVA_HOME/bin
 
 #Ardupilot Workspace Sourcing
 export PATH=$PATH:$HOME/workspaces/ardupilot-fortem/Tools/autotest
 export PATH=/usr/lib/ccache:$PATH
-
-#This sources the anansi_scripts
-source $(rospack find anansi_start)/scripts/dh_aliases.sh
 
 # This enables custom commands in terminator
 echo $INIT_CMD
@@ -126,3 +85,32 @@ if [ ! -z "$INIT_CMD" ]; then
     IFS=$OLD_IFS
 fi
 stty -ixon
+
+
+source /opt/ros/humble/setup.zsh
+
+# To get conan tests to work, anansi_ros install dir has to be hidden. I hide it in a directory called hideout
+anansi_ros_dir=/home/jacobolson/projects/dronehunter-dev/src/production/anansi_ros
+if [[ ! -d "$anansi_ros_dir/install" ]]; then
+  anansi_ros_dir="$anansi_ros_dir/hideout"
+fi
+source $anansi_ros_dir/install/setup.zsh --extend
+
+eval "$(register-python-argcomplete3 ros2)"
+eval "$(register-python-argcomplete3 colcon)"
+
+source $(ros2 pkg prefix anansi_start)/lib/anansi_start/scripts/dh_aliases.sh
+export ANANSI_BUILD_JOBS=6
+# This will 
+#export ROS_DOMAIN_ID=13
+export ROS_LOCALHOST_ONLY=1
+
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+export PATH=$PATH:$JAVA_HOME/bin
+# This sets commands so that there is no error if nothing is returned. Example ls *.tgz will fail silently if there is no tgz file
+setopt nonomatch
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:${PATH}"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"

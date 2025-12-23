@@ -17,6 +17,7 @@ restore-tabs-notify=true
 restore-tabs-startup=true
 save-tabs-when-changed=true
 scroll-keystroke=true
+start-at-login=true
 use-default-font=true
 use-popup=false
 use-scrollbar=true
@@ -26,7 +27,7 @@ window-height=38
 window-losefocus=false
 window-refocus=false
 window-tabbar=true
-window-width=95
+window-width=92
 
 [keybindings/global]
 show-hide='F2'
@@ -43,5 +44,5 @@ transparency=97
 
 [style/font]
 allow-bold=true
-palette='#3C3C3B3B3030:#979728280F0F:#474799994242:#7F7F71711010:#49497F7F7D7D:#7E7E4E4E2E2E:#38387F7F5858:#808079797474:#545454544444:#DFDF50502A2A:#6060E0E06F6F:#D6D698982727:#7878D8D8D8D8:#CDCD7C7C5353:#5858D5D59898:#FFFFF1F1E8E8:#808079797373:#212121211C1C'
-palette-name='Elemental'
+palette='#252529292A2A:#F2F248484040:#626296965555:#B6B688880000:#20207575C7C7:#79797F7FD4D4:#151596968D8D:#D2D2D8D8D9D9:#252529292A2A:#F2F248484040:#626296965555:#B6B688880000:#20207575C7C7:#79797F7FD4D4:#151596968D8D:#D2D2D8D8D9D9:#D2D2D8D8D9D9:#3D3D3F3F4141'
+palette-name='Solarized Darcula'
