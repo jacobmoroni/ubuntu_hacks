@@ -1,49 +1,4 @@
 #!/usr/bin/env bash
-
-function ros_master()
-{
-  # this is for the wifi dongle
-  #export ROS_MASTER_URI=http://$(/sbin/ip -o -4 addr list wlxc46e1f100439 | awk '{print $4}' | cut -d/ -f1):11311
-  #this is when plugged into router
-  export ROS_MASTER_URI=http://$(/sbin/ip -o -4 addr list enp0s31f6 | awk '{print $4}' | cut -d/ -f1):11311
-  #export ROS_MASTER_URI=http://$(hostname -I):11311
-  export ROS_IP=$(hostname -I)
-
-  env | grep ROS_MASTER_URI
-  env | grep ROS_IP
-}
-
-#function clion(){
-  #this is a super hacky way to get this to work. for some reason clion is only playing nice if
-  #launched from bash. so i switch to bash and the .bashrc file just launces clion because I never
-  #use bash for anything else
-  #bash
-#}
-
-function ssh_up()
-{
-  ssh up@10.45.10.72
-}
-
-
-function ros_up() 
-{
-    export ROS_MASTER_URI=http://10.45.10.72:11311
-    export ROS_IP=$(hostname -I)
-
-    env | grep ROS_MASTER_URI
-    env | grep ROS_IP
-}
-
-function ros_local() 
-{
-    export ROS_MASTER_URI=http://localhost:11311
-    export ROS_IP=$(hostname -I)
-
-    env | grep ROS_MASTER_URI
-    env | grep ROS_IP
-}
-
 function apm_sim()
 {
   cd ~/projects/dronehunter-dev/src/production/ardupilot-fortem/ArduCopter
@@ -59,11 +14,6 @@ function dgc()
 function viz_dgc()
 {
   google-chrome http://localhost:8083/gc    
-}
-
-function run_dh_sim()
-{
-  terminator -l dh_sim
 }
 
 function qgc()
@@ -98,34 +48,9 @@ function szshrc()
   source ~/.zshrc
 }
 
-function sl()
-{
-  ls
-}
-
 function find_word()
 {
   grep -rnw '.' -e "$1"
-}
-
-function gmail()
-{
-  /opt/google/chrome/google-chrome --profile-directory=Default --app-id=pjkljhegncpnkpknbcohdijeoejaedia &
-}
-
-function calendar()
-{
-  /opt/google/chrome/google-chrome --profile-directory=Default --app-id=kjbdgfilnfhdoflbpgamdcdgpehopbep &
-}
-
-function vpn()
-{
-  echo "s: 63.78.118.202:4433"
-  echo "u: jacob.olson"
-  echo "NULL" | xclip -selection c
-  echo "p: copied to clipboard. Delete the last character"
-  echo "d: Fortem"
-  netExtenderGui
 }
 
 function detar(){
@@ -151,20 +76,12 @@ function fix_rosbag(){
   rm $(echo "$1"| cut -d'.' -f 1)".orig.bag"
 }
 
-function print_this(){
-  echo $(echo "$1"| cut -d'.' -f 1)".bag"
-}
-
 function tracker(){
   sudo bash /opt/tracker/tracker.sh
 }
 
 function profile(){
   python3 -m cProfile -o $2 $1
-}
-
-function printProf(){
-  echo $2 $1
 }
 
 extract-all () 
@@ -185,42 +102,23 @@ extract-all ()
   ls --color=auto
 }
 
-function dh_sim(){
-  tmux new-session \; split-window -v \; split-window -h \; send -t 0:1.1 "dgc" C-m \; send -t 0:1.2 "anansi_start" C-m \; send -t 0:1.3 "apm_sim" C-m \; attach 
-}
-
-function dh_full_sim(){
-  tmux new-session \; split-window -v \; split-window -h \; new-window \; split-window -v \; split-window -h \; send -t 0:1.1 "dgc" C-m \; send -t 0:1.2 "anansi_start" C-m \; send -t 0:1.3 "apm_sim" C-m \; send -t 0:2.1 "rosrun sim_interfaces target_interface" C-m \; send -t 0:2.2 "bash ~/workspaces/dronehunter-dev/visualizer/scripts/run.sh" C-m \; send -t 0:2.3 "bash ~/workspaces/dronehunter-dev/radar-sim/scripts/run.sh air" C-m \; attach 
-  
-}
-
-function github_token_to_clipboard(){
-  echo "TODO-copy-token" | xclip -selection c
-  echo "Expires ??"
-}
-
-alias setclip="xclip -selection c"
-alias getclip="xclip -selection c -o"
-
-function gitlab_token_to_clipboard(){
-  echo "TODO-copy-token" | xclip -selection c
-  echo "Copied to clipboard. Token expires: 11-06-2024"
-}
 
 function rkill(){
-  rosrun anansi_start kill_all.sh
+  ros2 run anansi_start kill_all.sh
 }
 
-alias pr='python3 ~/workspaces/dronehunter-dev/tools/analysis-tools/executables/plot_rosbag'
+alias sl='ls'
+alias pr='python3 ~/projects/dronehunter-dev/tools/analysis-tools/executables/plot_rosbag'
 alias prl='cd ~/ros_logs/latest && pr'
-alias pts='python3 ~/workspaces/dronehunter-dev/tools/analysis-tools/executables/dh_plot_states'
-alias dhviz='python3 ~/workspaces/dronehunter-dev/tools/analysis-tools/executables/dh_viz'
-alias netviz='python3 ~/workspaces/dronehunter-dev/tools/analysis-tools/executables/dh_net_viz'
-alias logwiz='python3 ~/workspaces/dronehunter-dev/tools/anansi_dev_tools/tools/log_wizard/log_wiz_gui.py'
-alias plot_apm='python3 ~/workspaces/dronehunter-dev/tools/analysis-tools/apm_analysis_scripts/plot_apm_log.py'
-alias plot_dgc='python3 ~/workspaces/dronehunter-dev/tools/analysis-tools/dgc_analysis_scripts/plot_dgc.py'
-alias plot_dgc_pre_v6='python3 ~/workspaces/dronehunter-dev/tools/analysis-tools/dgc_analysis_scripts/plot_dgc_pre_v6.py'
+alias pts='python3 ~/projects/dronehunter-dev/tools/analysis-tools/executables/dh_plot_states'
+alias dhviz='python3 ~/projects/dronehunter-dev/tools/analysis-tools/executables/dh_viz'
+alias netviz='python3 ~/projects/dronehunter-dev/tools/analysis-tools/executables/dh_net_viz'
+alias logwiz='python3 ~/projects/dronehunter-dev/tools/anansi_dev_tools/tools/log_wizard/log_wiz_gui.py'
+alias plot_apm='python3 ~/projects/dronehunter-dev/tools/analysis-tools/apm_analysis_scripts/plot_apm_log.py'
+alias plot_dgc='python3 ~/projects/dronehunter-dev/tools/analysis-tools/dgc_analysis_scripts/plot_dgc.py'
+alias plot_dgc_pre_v6='python3 ~/projects/dronehunter-dev/tools/analysis-tools/dgc_analysis_scripts/plot_dgc_pre_v6.py'
 alias studio="bash ~/Software/android-studio/bin/studio.sh"
+
 function copyVersionedFile() {
     file_to_copy=${1}
     destination=${2}
@@ -293,10 +191,10 @@ function log_scraper() {
 }
 
 function safe_delete_git_branches() {
-  bash ~/.scripts/safe_delete_git_branches.sh
+  bash ~/projects/ubuntu_hacks/helper_scripts/safe_delete_git_branches.sh
 }
 
-alias show_ip="bash ~/.scripts/show_ip_info.bash"
+alias show_ip="bash ~/projects/ubuntu_hacks/helper_scripts/show_ip_info.bash"
 
 function git_branch_hash() {
   hash=$(git rev-parse HEAD)
