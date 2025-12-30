@@ -46,13 +46,13 @@ function ros_local()
 
 function apm_sim()
 {
-  cd ~/workspaces/dronehunter-dev/src/production/ardupilot-fortem/ArduCopter
+  cd ~/projects/dronehunter-dev/src/production/ardupilot-fortem/ArduCopter
   ./start_apm_sim.sh
 }
 
 function dgc()
 {
-  cd ~/workspaces/dronehunter-dev/src/production/ground-station/target
+  cd ~/projects/dronehunter-dev/src/production/ground-station/target
   ./DGC-*.war
 }
 
@@ -66,12 +66,6 @@ function run_dh_sim()
   terminator -l dh_sim
 }
 
-function local_ports()
-{
-  cd ~/workspaces/anansi_dev_tools/tools
-  ./virtual_ports.sh -l
-}
-
 function qgc()
 {
   cd ~/software/
@@ -80,14 +74,8 @@ function qgc()
 
 function anansi_start()
 {
-  cd ~/workspaces/dronehunter-dev/anansi_ros
+  cd ~/projects/dronehunter-dev/anansi_ros
   rosrun anansi_start anansi_start.sh
-}
-
-function run_full_sim()
-{
-  cd ~/workspaces/dronehunter-dev
-  bash run_full_sim.sh
 }
 
 function qt()
@@ -301,12 +289,14 @@ function rezip() {
 }
 
 function log_scraper() {
-  python ~/workspaces/dronehunter-dev/tools/analysis-tools/dh_analysis_scripts/log_scraper/dh_log_scraper.py $1
+  python ~/projects/dronehunter-dev/tools/analysis-tools/dh_analysis_scripts/log_scraper/dh_log_scraper.py $1
 }
 
 function safe_delete_git_branches() {
   bash ~/.scripts/safe_delete_git_branches.sh
 }
+
+alias show_ip="bash ~/.scripts/show_ip_info.bash"
 
 function git_branch_hash() {
   hash=$(git rev-parse HEAD)
@@ -317,11 +307,29 @@ function git_branch_hash() {
   fi
 }
 
-function copyright_check_main() {
-  rosrun tools check_copyrights.py --apply --files $(git diff --diff-filter=AMR --name-only origin/main...HEAD)
+function copyright_check() {
+  python /home/jacobolson/projects/dronehunter-dev/src/production/anansi_ros/src/tools/ci/ci-tools/code_checks/copyright/check_copyrights.py --apply --files $(git diff --diff-filter=AMR --name-only origin/$1...HEAD)
+
 }
 
-function copyright_check_dev() {
-  rosrun tools check_copyrights.py --apply --files $(git diff --diff-filter=AMR --name-only origin/dev...HEAD)
+alias ipython="ipython3"
+alias cdros="cd ~/projects/dronehunter-dev/src/production/anansi_ros"
+alias cdan="cd ~/projects/dronehunter-dev/tools/analysis-tools"
+
+function check_blame_cpp() {
+  git ls-files | grep "\.cpp\|\.h" | while read -r file;
+  do
+    git blame --line-porcelain "$file" 2>/dev/null || continue
+  done | awk '/^author /{authors[$2]++} END{for (a in authors) print authors[a], a}' | sort -nr
 }
 
+function notify_complete() {
+  "$@" && (paplay /usr/share/sounds/freedesktop/stereo/dialog-information.oga && curl -d "build finished" ntfy.sh/jacob_build_notifications) || (paplay /usr/share/sounds/freedesktop/stereo/dialog-error.oga && curl -d "build failed" ntfy.sh/jacob_build_notifications)
+}
+
+alias clean_anansi_linker=" export LD_LIBRARY_PATH=$(echo "${LD_LIBRARY_PATH}" | tr ':' '\n' | grep -v "anansi_ros" | paste -sd ':' -)"
+
+alias notify="notify_complete"
+
+alias merge_bag="python ~/projects/dronehunter-dev/tools/anansi_dev_tools/tools/ros2_bag_merge.py"
+alias show_wifi_pass="sudo grep -r '^psk=' /etc/NetworkManager/system-connections/"

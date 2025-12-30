@@ -4,7 +4,8 @@ set encoding=utf-8            " sets default encoding
 filetype off                  " required
 set relativenumber            " shows relative line numbers 'set norelativenumber' to disable
 set number                    " turns line numbers on 'set nonumber' to disable 
-
+set hlsearch
+set incsearch
 set clipboard=unnamedplus     " link to system clipboard
 set tags=tags
 

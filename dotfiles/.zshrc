@@ -87,7 +87,7 @@ fi
 stty -ixon
 
 
-source /opt/ros/humble/setup.zsh
+source /opt/ros/jazzy/setup.zsh
 
 # To get conan tests to work, anansi_ros install dir has to be hidden. I hide it in a directory called hideout
 anansi_ros_dir=/home/jacobolson/projects/dronehunter-dev/src/production/anansi_ros
