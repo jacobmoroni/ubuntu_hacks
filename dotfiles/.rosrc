@@ -1,19 +1,6 @@
-export ROSLAUNCH_SSH_UNKNOWN=1
-export ROS_PARALLEL_JOBS='-l8 -j8'
+source /opt/ros/jazzy/setup.zsh
+source /home/jacobolson/projects/dronehunter-dev/src/production/anansi_ros/install/setup.zsh --extend
 
-export ROSCONSOLE_FORMAT='[${severity}] [${time}] [${node}]: ${message}'
-
-alias rosmaker="(cd `echo $ROS_PACKAGE_PATH | awk -Fsrc: '{print $1}'` && catkin_make -DCMAKE_BUILD_TYPE=RelWithDebInfo)"
-alias rosmaked="(cd `echo $ROS_PACKAGE_PATH | awk -Fsrc: '{print $1}'` && catkin_make -DCMAKE_BUILD_TYPE=Debug)"
-
-#ROS WORKSPACE sourcing
-source /opt/ros/melodic/setup.zsh
-source ~/workspaces/dronehunter-dev/anansi_ros/devel/setup.zsh --extend
-#source ~/workspaces/red-v-blue/devel/setup.zsh --extend
-source ~/workspaces/dronehunter-dev/target-simulator/devel/setup.zsh --extend
-source ~/workspaces/dronehunter-dev/dronehunter-utilities/devel/setup.zsh --extend
-#source ~/workspaces/dronehunter-dev/visualizer/build/devel/setup.zsh --extend
-
-#export ROS_MASTER_URI=http://$(hostname -I):11311
-#export ROS_IP=$(hostname -I)
-
+source $(ros2 pkg prefix anansi_start)/lib/anansi_start/scripts/dh_aliases.sh
+export ANANSI_BUILD_JOBS=6
+export ROS_LOCALHOST_ONLY=1
